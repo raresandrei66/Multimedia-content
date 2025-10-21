@@ -1,0 +1,975 @@
+Transcriere
+
+
+0:00
+all right good morning everyone and
+0:02
+Welcome to our first laboratory for the
+0:04
+class um of multimedia data security in
+0:08
+today's Laboratory um we will go through
+0:11
+the step you need to follow to generate
+0:13
+the virtual environment you have to use
+0:15
+for um The Challenge cap Mark that will
+0:18
+be the 4th of uh November so um I sent
+0:23
+you by mail a code or you can find it on
+0:26
+the page of the course um the code that
+0:29
+we will see to today is called uh is
+0:31
+inside a zip folder called laboratory
+0:34
+1.zip
+0:35
+now before starting just a little uh a
+0:39
+little note on how you should in my
+0:42
+opinion arrange the code as you can see
+0:45
+I store it inside a folder in my desktop
+0:48
+called MDS labs and inside a sub folder
+0:52
+called Labs
+0:54
+all so inside this folder as you can see
+0:57
+I already have un Zipit the laboratory
+0:59
+of today which is called lab one and uh
+1:02
+I also have laboratory 2 and laboratory
+1:05
+3 that we will see in our next lectures
+1:08
+however at the same level of this folder
+1:09
+you can find official uncore MDS
+1:12
+environment which will be the
+1:14
+environment that we are going to create
+1:16
+today eventually I will call the
+1:18
+environment I'm going to create in a
+1:20
+different with AER name um just to go
+1:24
+through step by step what you have to do
+1:27
+um so that to show you um which process
+1:30
+you should
+1:32
+follow now as I said we start with our
+1:35
+first notebook um which is called python
+1:39
+installation do um
+1:42
+ipynb which is high python notebook so
+1:46
+um as you can see over here I'm pointing
+1:48
+it with my the pointer of my mouse uh I
+1:51
+already have the environment activated
+1:53
+and indeed um this is possible by uh
+1:57
+following the structure I suggest uh in
+1:59
+in uh in the first seconds of this video
+2:02
+so what you should do to open this
+2:04
+notebook as well uh once that you open
+2:08
+DS code you should go to file click on
+2:11
+it here we go and then you should click
+2:14
+on open
+2:15
+folder and you should go uh inside the
+2:18
+folder where you have all your labs and
+2:20
+where you're are going to create your
+2:21
+virtual environment so
+2:24
+here you select the folder and you just
+2:27
+open it now since before I already have
+2:30
+open python installation and the other
+2:33
+notebook they automatically reopen again
+2:35
+but in your case um it will probably
+2:38
+show a structure similar to the one I'm
+2:40
+pointing with my mouse right now so you
+2:42
+should just go and double click on
+2:44
+python installation and it to will
+2:46
+automatically open um the python
+2:48
+notebook we are just going to use right
+2:50
+now so um to create your viral
+2:54
+environment the first thing you should
+2:55
+do if you did not yet is to download and
+2:58
+install uh python
+3:00
+for the challenge we are going to have
+3:03
+the 1th of
+3:05
+November the python version we need to
+3:07
+use Python 3.8 you can access it through
+3:10
+this
+3:10
+link um so you just need to click on the
+3:14
+link as you can see here you have python
+3:16
+3.8 you scroll down and you download
+3:20
+while the um installer you need
+3:22
+depending on your uh computer um
+3:26
+operating system if you are on the Mac
+3:28
+OS and if you have a new version of Mac
+3:31
+OS specifically uh older than Mac OS 11
+3:35
+so big sir or later or if you have a PO
+3:38
+silicon you should uh download the
+3:40
+following
+3:42
+um file of installation otherwise if you
+3:46
+have Windows installer well if you have
+3:48
+Windows you should go through for uh
+3:52
+Windows installer 64bit well if you have
+3:54
+Linux probably you are even more expert
+3:57
+than me but you have over here the um
+4:00
+Linux uh installation file you you
+4:03
+should uh um well you have to
+4:06
+use all right so once that you have
+4:09
+downloaded uh sorry once that you
+4:11
+downloaded over here your um your python
+4:17
+installations the next thing you have to
+4:20
+do uh is to download git uh for those
+4:22
+who download the zip file that I put on
+4:25
+the uh official page of the course or
+4:28
+that I sent by mail you already
+4:30
+have it over there and well of course
+4:32
+you should also install vs code but if
+4:34
+you are already seeing this notebook you
+4:37
+are already inside
+4:39
+thecode so um go through uh install
+4:43
+python open the the installer and um be
+4:48
+sure before going um for install now to
+4:53
+have check these two um uh well to have
+4:57
+to check these two options the first one
+5:00
+is install launcher for all users maybe
+5:02
+you are not the root one or you're not
+5:05
+the admin of your computer so be sure to
+5:07
+check this this box and also add python
+5:11
+3.8 to path this will make possible for
+5:15
+you to then open vs code and vs code to
+5:18
+automatically retrieve the python uh
+5:20
+version you have to use specifically
+5:22
+this version python
+5:24
+3.8 after you install python uh also
+5:28
+install git so you just click on the
+5:30
+installer if you are on Windows if you
+5:32
+are on Linux or Mac you don't need to
+5:34
+really inst start um git bash uh but for
+5:38
+Windows user I suggest to to install
+5:40
+this so you can use bash on the terminal
+5:43
+of your
+5:45
+um of your vs code uh platform so you
+5:50
+just double click on it make sure to
+5:51
+have check all this box or better the
+5:54
+one of the screenshot and then you spawn
+5:57
+on the next button until the moment that
+5:59
+uh get bash is also
+6:01
+installed then you install vs code if
+6:03
+you didn't um do it yet you open vs code
+6:07
+and at this
+6:09
+point you open the uh
+6:12
+terminal as we are going to use the
+6:14
+terminal to um to in well to to create
+6:19
+the virtual environment so to open the
+6:21
+terminal you should go to this three
+6:23
+dots over here you click on it you go on
+6:26
+Terminal and then you click on new
+6:27
+terminal if you're bash version was
+6:31
+correctly installed it will open
+6:32
+something similar to what I'm showing
+6:34
+right now as you can see even here I
+6:36
+already have um the virtual environment
+6:40
+here um
+6:42
+activated so I will just deactivate it
+6:45
+just in case but this is very likely uh
+6:50
+what you should expect from your
+6:51
+terminal so you have um the name of your
+6:54
+user inside the computer um the name of
+6:57
+your computer and then well the PA to
+6:59
+the folder where you're going to create
+7:01
+the terminal as you can see I'm inside
+7:04
+uh labore all and inside this folder by
+7:07
+pressing LS and then enter um you can
+7:11
+see that I have the three different
+7:13
+folder of the laps um of this video and
+7:16
+the next one and the virtual environment
+7:18
+I already uh
+7:21
+created now if you um if you open the
+7:26
+terminal correctly the next thing you
+7:28
+should do is to set
+7:30
+the um default uh interpreter or whether
+7:35
+the default profile of your terminal to
+7:37
+bash you can do it by pressing at the
+7:40
+same time control shift p and then well
+7:45
+searching for
+7:46
+terminal um select default profile you
+7:50
+click on it and you make sure that you
+7:52
+have select it
+7:54
+bash and you should um have a terminal
+7:58
+that looks very likely especially if
+7:59
+you're on Windows like the one that I'm
+8:01
+showing you right
+8:03
+now once you did
+8:05
+so you go uh well you select bash as I
+8:10
+said and then the last thing you have to
+8:13
+do is to check that your python version
+8:15
+was actually correctly installed so
+8:18
+to check the dis venience uh you can
+8:21
+either type
+8:24
+python
+8:25
+space then you have to minus signs and
+8:29
+then you
+8:30
+type version and you press enter and as
+8:33
+you can see here in my case I have
+8:35
+python uh space Bas version and it
+8:39
+appear python 3.8 in case this is not
+8:41
+the only version of python you have
+8:43
+installed on your PC probably also want
+8:46
+to check what happens if you type Python
+8:48
+3 space Bas
+8:50
+version uh well in my case nothing at
+8:52
+all because it's the only python version
+8:54
+that I have but maybe you you have it
+8:56
+under the highas Python 3 or maybe
+8:59
+python 3.8 SL SL
+9:03
+version but even here in my case is
+9:05
+already ISS with python but just check
+9:08
+and be
+9:10
+sure the next thing you have to do and
+9:13
+I'm looking at the 13 is to type pip
+9:18
+space and check the
+9:20
+version using this um this common line
+9:25
+so beep space space bace version
+9:29
+and here I press clear just to clear the
+9:31
+terminal and then um make sure to have
+9:35
+installed with peep the virtual
+9:37
+environment so you just do peep install
+9:41
+virtual environment and you press
+9:44
+enter um oh sorry I have a typo here we
+9:49
+to how environment there we go so in my
+9:53
+case um I already have installed virtual
+9:56
+environment as you can see from the
+9:59
+output of the common line I just
+10:01
+launched but in case you didn't have it
+10:03
+installed well it will automatically
+10:05
+install virtu environment to your
+10:08
+PC all right so the next thing you have
+10:13
+to do at this point since you have uh B
+10:15
+installed python installed and also uh
+10:18
+well peep with um the requirements which
+10:21
+is virtual environment Library um
+10:24
+installed on your PC is to create your
+10:26
+virtual environment so as you can see
+10:28
+here I've wrote that in the terminal you
+10:30
+should type
+10:31
+python minus m v official uncore MDS
+10:37
+uncore environment however I already
+10:40
+have an environment installed with this
+10:43
+with the syntax so I will um call it uh
+10:47
+official uncore MDS uncore M2 just to
+10:51
+make sure that is the second version
+10:53
+that I installed and not the first one
+10:55
+then you press enter
+10:59
+and
+11:01
+you well don't show again we just close
+11:04
+this so we go step by step following
+11:06
+what we just wrote in this notebook and
+11:08
+you let uh python do its job so right
+11:11
+now the could finish as you can see here
+11:14
+no prompt was displayed but when you
+11:16
+press LS enter you can see over here
+11:19
+that a second folder appeared called
+11:22
+official _ MDS uncore environment so
+11:25
+this is our environment if um this code
+11:28
+produce error it's better if you check
+11:30
+if no error are produces by following
+11:32
+another syntax which is Python 3 space
+11:36
+minus M and um ofor MDS uncore
+11:40
+environment or python 3.8 space minus m
+11:45
+space
+11:46
+environment um sorry space b uh space
+11:51
+official underscore MDS uncore M this is
+11:54
+because maybe your python version is ISS
+11:56
+inside your computer using a different
+11:58
+syntax specifically Python 3 or python
+12:02
+3.8 then once that you have installed uh
+12:06
+well once that you have created your
+12:07
+virtual environment as you can see here
+12:09
+you also have a
+12:10
+screenshot um of the output you should
+12:14
+expect or you could expect and here
+12:17
+instead the two syntax the two
+12:19
+alternative syntax you should try if
+12:21
+python space minus M um produce error so
+12:25
+try this one or this
+12:27
+one once that you
+12:29
+finished um creating your environment
+12:32
+you can access and activate it so to
+12:35
+access and activate your environment
+12:36
+what you have to do is just go to the
+12:38
+terminal again and type Source official
+12:43
+MDS environment in my case is
+12:46
+environment two because it's the second
+12:47
+times that I created it uh Slash and if
+12:51
+you are on Windows you type
+12:53
+scripts slash activate and you press
+12:57
+enter and will activate the virtual
+12:59
+environment you just created if you are
+13:01
+on other operating system such as Linux
+13:04
+or uh Mac OS you just type the same
+13:08
+common line but you substitute scripts
+13:10
+with bin you have it over here and I'm
+13:13
+pointing with my
+13:15
+mouse all right so the last thing you
+13:19
+have to do to once now that you create
+13:21
+your V environment is to install the
+13:24
+libraries you will use to implement your
+13:26
+code and to uh run the other notebook we
+13:30
+will uh see in the next laboratory so
+13:33
+the things you have to do now is to
+13:35
+press pip well type pip install minus
+13:39
+r
+13:42
+requisites do text in this case
+13:46
+however um since requisites are not
+13:50
+inside this path for me so are not
+13:52
+inside Labs all I need to move inside
+13:55
+lab one which is the subfolder uh well
+13:59
+the folder that I sent you by mail or
+14:01
+that you download from the original page
+14:03
+of the course and where um The Notebook
+14:06
+python uncore installation. uh IP ynb
+14:11
+and all the other notebook we are seeing
+14:12
+today are as well as the file the text
+14:15
+file where the requisites are so you
+14:17
+access the folder you can see it here I
+14:20
+just typing CD space Lab One you get
+14:24
+inside the folder of lab one and here
+14:26
+you can actually run type and run dip
+14:30
+install Min newr requisites and you
+14:33
+press enter and this will automatically
+14:37
+um install while it's going to collect
+14:39
+and install the requisites or the
+14:42
+requirements um you need to have
+14:45
+installed to implement your code and to
+14:46
+run the scripts uh we will see in our
+14:49
+next laboratory all right so once that
+14:51
+you finish to install the requirements
+14:53
+inside the text file uh using pip
+14:55
+install minus or requisites do text
+14:59
+um what your terminal should uh display
+15:03
+is more or less um this um this prompt
+15:07
+over here which means uh um that if you
+15:10
+don't have any prompt in red um the
+15:13
+installation went through smoothly so
+15:15
+you shouldn't have any type of errors
+15:18
+and all the requisite and all the
+15:20
+requirements have been installed
+15:23
+now
+15:25
+um so you create a v environment called
+15:29
+official _ MDS environment you installed
+15:33
+the requirements using pip so your
+15:36
+environment is all set up you just need
+15:38
+to understand how you can use it in vs
+15:41
+code and use it in vs code is pretty
+15:43
+simple um I'm just going to minimize the
+15:47
+terminal as we are not going to use it
+15:49
+at least for
+15:50
+now and I'm going to follow what written
+15:54
+in um Point 18 so on point 18 there is
+15:59
+that there is written that um you should
+16:01
+click on select kernel tab which is this
+16:04
+one over here in my case has um it
+16:07
+automatically went and detected the
+16:09
+default python environment um it show
+16:12
+python
+16:13
+3.8 uh 10 but in your case it should
+16:16
+show something like select
+16:18
+kernel so you just click on it and you
+16:23
+um well we just scroll down and just to
+16:27
+show what you should also see
+16:29
+um you click on python environment so
+16:33
+you click on python environment and you
+16:35
+select the environment you just created
+16:37
+in your case the environment that you
+16:39
+just created was uh official _ MDS
+16:43
+environment so you click on
+16:45
+it as written in
+16:48
+20
+16:50
+um and that's it so you have activate
+16:54
+your viral environment you can see it
+16:56
+over here it appears official _ MD
+16:59
+uncore environment and from this moment
+17:01
+on you can just use it on this python
+17:04
+notebook now the last thing that you
+17:06
+need to check to be sure that your viral
+17:08
+environment was created correctly and
+17:10
+all the requirements has been installed
+17:12
+is to run the following chunk of code
+17:14
+now these chunk of code are pretty
+17:16
+useful also for the implementation of
+17:19
+your code for a challenge
+17:21
+indeed what this chunk of code does is
+17:24
+encrypt a python function in a format
+17:26
+that is not readable by other user
+17:29
+except if they have um the keys to
+17:32
+decrypt it now why you should encrypt
+17:35
+one of your code um because the code
+17:37
+that you will provide are the um
+17:40
+embedding codes the detection code and
+17:42
+well then you have also the code that
+17:44
+you will use to attack the group as well
+17:46
+as The Rock
+17:47
+function however on the detection code
+17:50
+um the detection code is one of those
+17:52
+that you will give to other groups so
+17:55
+that they can check if their attack were
+17:57
+effective or not now uh you want to give
+17:59
+them this code but in an encrypted way
+18:02
+so that they cannot reverse engineering
+18:04
+what you just did to detect your code
+18:07
+and then understand also where you embed
+18:09
+your watermark so um you want to give
+18:13
+them in an encrypted way as I said and
+18:16
+you want to be sure that you are able to
+18:18
+encrypt it the day of the challenge so
+18:20
+in the first chunk of code here I show
+18:22
+how you can encrypt your your script by
+18:24
+using this simple uh line in uh of
+18:28
+script in Python so you give as input
+18:31
+hello name. Pi which is supposedly a
+18:34
+function that you created and you
+18:37
+specify the name the output um uh the
+18:40
+name of the output file you want to uh
+18:43
+obtain so in this case is hello nameen
+18:46
+which stays for encrypted do PC which is
+18:50
+p
+18:53
+compiled and if you go through the
+18:55
+folder lab one and uh you go through
+19:00
+hello name. Pi you can see that you can
+19:03
+perfectly read what's inside this
+19:04
+function indeed there is a functions uh
+19:07
+well this python um this pyth on file
+19:10
+sorry indeed there is a function called
+19:11
+GD which receive an argument as input
+19:14
+called name which is supposedly a
+19:16
+string um however if you try to open the
+19:20
+encrypted one it will ask you how you
+19:23
+want to open so we say all right text
+19:25
+editor and is unreadable so you have
+19:27
+null null and a lot of character that
+19:29
+you cannot really uh decode or
+19:33
+read so if your code produce um if
+19:36
+you're running this uh this junko script
+19:38
+you are able to produce this hello name
+19:41
+an. PC file then you're fine otherwise
+19:45
+check um which step of the
+19:47
+implementation of the virtual
+19:48
+environment and installations weren't
+19:51
+wrong um you can also check that this
+19:54
+function produce actually the result you
+19:56
+expect so you are able to run the uh
+19:58
+sorry you are able to run the function
+20:00
+inside the file so you're just going to
+20:03
+import hello name en so the
+20:07
+file the the encrypted file you just
+20:10
+created in this chunk of code and then
+20:13
+you're going to call the function inside
+20:15
+this file which is um by doing lello
+20:19
+name uncore Ang do read uh open
+20:23
+parentheses and you put uh your name in
+20:25
+my case Andrea and you close the
+20:27
+parenthesis as you can see running this
+20:29
+chunk of code you get the message hello
+20:31
+Andre so you were able to encrypt it and
+20:34
+you were also able to run the function
+20:37
+inside the file you just
+20:40
+encrypt finally here I generate another
+20:44
+functions uh well another file called
+20:46
+detection uncore
+20:48
+template um which follow somehow the
+20:51
+structure of your detection function
+20:53
+that you need to implement but that
+20:55
+inside has indeed a function called
+20:56
+detections which get three arguments and
+21:00
+um return one uh single output in your
+21:03
+case there should be two
+21:06
+output however even here we generate the
+21:09
+encrypted version detection uncore
+21:12
+templateor an.
+21:15
+PC and you can also call this file and
+21:18
+the function inside the file by
+21:20
+following this syntax and as you can see
+21:22
+we are able to print the three input and
+21:25
+as well the
+21:27
+output the last check then that I ask
+21:29
+you to do is to rank this chunk of code
+21:31
+here this code was um well this file was
+21:34
+encrypted with the machine on which we
+21:36
+will run our our challenge the 4th of
+21:39
+November and if you are able to import
+21:41
+the file and uh run the function inside
+21:44
+this file which was as well encrypted
+21:47
+but with the server we will use that
+21:49
+they um then you're perfectly fine and
+21:52
+everything for this LAB Works you are
+21:54
+able to implement your first uh maybe uh
+21:57
+virtual environment install the
+21:59
+requirements and run it on vs code and
+22:01
+then you're ready to go for the next
+22:02
+laboratory and uh to start implementing
+22:05
+your code

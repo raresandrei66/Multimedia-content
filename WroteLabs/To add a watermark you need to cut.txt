@@ -1,0 +1,136 @@
+To add a watermark you need to cut away. Choose the channel where is enough information.
+Invisible embedding technics implica modificarea canalelor care au mai multa redundanta.
+CB CR are both fine.
+
+If something has high entropy law redundancy do not touch.
+If has high redundancy you can touch it.
+
+
+Localsing the attack is the best way.
+
+The winner put watermark in a stupid way on aside.
+
+1 watermark can be putted [1000x1024].
+
+Edge detection algorithm 
+First extract the orizontal edges
+The interes on the edges is frecventele inalte, multi algoritmi embedded watermark in aceste edguri.
+Desi pare contraintuit dar e bine sa fie watermark-ul in aceste zone.
+Unde este mai multa textura acolo nu se poate vedea watermarkul.
+Totusi este usor de eliminat daca contraatacotrii ataca fix aceste zone cu frecventa inalta.
+
+In primul rand trebuie sa vedem un trdeof intre robustete si invizibilitate.
+
+Cany Edge
+Lucreaza asemanator.
+
+
+Partile cu frecventa inalta din poza, pot fi localizate si cu frecventy domain.
+Law freq area corepsunde la cele flate.
+Frecventele inalte robustete scazuta dar invizibilate.
+
+
+AWGN
+
+It adds white noise.
+Atentie ca poate distruge imaginea.
+
+
+Gaussian Filter
+Eliminam frecventele inalte din toate zonele.
+Atentie iar cum setam paramaterii ca putem elimina watermark, dar imaginea sa devina foarte blur.
+E bun pentru high freqvences
+
+
+Sharpening
+E inversul la blurring.
+E bun pentru law freqventces.
+
+
+Median Filtering
+
+0.1 = 10% FP
+
+
+Median Filtering
+Preserva cei mai multi pixeli care se repeta cel mai mult.
+In contrast cu blur care face totul blur, aici cualitatea imaginii este mai bine pastrata.
+
+
+Resizing
+Functioneaza putin ca si bluring.
+Se ia o imagine si se daunscaling din 4x4 in 2x2 si se face dupa iar upscaling.
+
+Insemna ca atunci la descaling se pierde informatie care din pacate nu poate fi refacuta ulterior.
+
+
+
+Median filter poate fi global, dar resizing si sharping e bine intr-o maniera localizata.
+
+
+JPEG Compression
+Imparte img in 8x8 blocks si converta culoarea
+In locul de a aplica resizing e destul de suficient sa convertim in cbcr si dupa inapoi pentru a elimina watermark.
+
+
+
+Resizing arunca pixelii.
+
+JPEG compression ar fi unul din cele mai puternice dintre algoritmi.
+Quality of the attack e bine sa fie cat mai aproape de 100.
+Poate fi aplicat global.
+
+Localization vs Global application
+Redudancy vs entropy
+High freqvency vs law freqvency.
+
+
+Transform Domain
+
+Flat region mai putina invizibilitate dar mai multa robustnete.
+Invers se aplica de asemenea.
+
+Fourier Transform
+Este un algoritm (discret/fast) care transforma spatiul temporal signal in spatiu si timp.
+Frecventele inalte sunt in centru si cele joase in colturi.
+Atentie se poate shifta invers high in exterior si law in centru.
+Sunt componente imaginare si reale.
+Trebuie lasate cele imaginare pentru ca pot strica pixelii
+Trebuie atinse cele reale si acelea pot fi atinse
+Nu stiu ce componenta nu trebuie atinsa (angular one? dar trebuie atinsa cea reala).
+Nu trebuie atinsa nici zona bright (cea din centru) dar se poate atinge spre colturi.
+
+fftshift nu centru da colturi
+fft da centru si nu colturi
+
+
+
+Invers FFT
+Intoarce inapoi la imaginea clara
+
+FFT se poate folosi la localizarea atacului.
+
+
+Discrete Cosine Transform
+E mai eficient ca FFT, cu atat mai mult cu cat detectia trebuie sa ruleze in secunde.
+E bun pentru digital procesing. De asemenea si pentru data optimisation si compresion.
+
+
+Do not tocuh nu stiu DC compoent? Cea din coltul stanga sus din gradient.
+To have an efficient algorithm tot tinul tine de optimizare, robustete si flexibilitate.
+
+De fiecare data cand se foloseste DCT trebuie folosit si conversia la Invers DCT
+
+
+Wavelet transform
+Nu doar te lasa sa extragi law si high dar e si cross component.
+Law-high, high-law and so on (LL, HL, LH, HH). 
+
+Ajuta sa localizam mai bine unde sa punem watermarkul, fără a distruge claritatea.
+Mai poate fi util ca sa aplicam watermark-ul pe mai multe nivele, de mai multe ori.
+Daca emebeded 1 time, atunci primul care il poate elimina il va putea elimina.
+E bine sa fie emebded redudntant. Totuși de câte ori îl embedăm cu atâtea ori devine mai puțin invizibil.
+
+
+
+

@@ -1,0 +1,1297 @@
+Introduction
+0:00
+all right good morning everyone and Welcome to our second class today we will see some basic image processing
+0:05
+techniques that you are also allowed to use to implement the code for the
+0:11
+attacking phase um that you will use during our our Challenge and then we
+0:16
+will see also some domain Transformations so how we can move from the RGB or pixel special domain to the
+0:23
+frequency one specifically we will study the first wi transform the discret
+0:28
+cosign transform and the discrete wavel transform so to begin as always we need
+0:35
+to go and open our uh our repository where we are
+0:41
+storing our code um as I said uh in my past laboratory I suggest that you store
+0:49
+all the Laboratories and the virtual environment in the same folder and at the same level in this way for instance
+0:56
+I have stored them in labore all um and the only things that I need to do is to
+1:02
+open this folder and well in this case as you can see it automatically open the two
+1:09
+notebook that we will use today so image processing. ipynb and transform domain
+1:16
+solution. IP ymb and um as you can notice also um
+1:22
+where before there were written select kernel um so in these small popup
+1:27
+Windows here uh it already detect the in Virtual environment that we set up in
+1:32
+our previous lobry so if you are reading official MDS
+1:38
+environment uh python 3.8 .10 then you are all set up and ready to go otherwise
+1:44
+you click on it um well probably this is what it will appear so you have to
+1:50
+choose between a Python environment or an existing Jupiter server you click on
+1:55
+python environment and you just select your um your VOR environment which is
+2:01
+the one that we set the in our past labatory so let me just uh reduce a bit this
+2:10
+window here and then starting with our first laboratory there we go so as I
+2:17
+said um before starting there are some general notes on the laboratory um these
+2:24
+note were written before I correct the file with the requisites that you installed in our previous labrary um
+2:32
+indeed the first version of this requisite dox was not including Sid kit image um that was added after I give
+2:40
+this laboratory in class um so if you installed your virtual environment
+2:45
+following the registrations uh of lab one then you're all set and ready to go
+2:50
+otherwise if you were following the class sorry the laboratory in class um
+2:55
+and you set up that environment during our first laboratory class you are
+3:00
+required to run this um common line P install psych image so that all the
+3:06
+requirements are actually installed in your virtual environment that just to um
+3:12
+as a reminder the virtual environment that you need to use is called official
+3:17
+MDS environment now here there's my mail if you have any doubts and otherwise we can
+3:25
+start so as I said that the labat of today is divided in two part the first part is um about image processing and so
+3:33
+common operation to process your image change um the color space from RGB to
+3:39
+BGR to wbrr and then we will go through each of the attacks and processing you
+3:44
+are allowed to use during implementation of your code for a challenge and then instead the second laboratory is called
+3:51
+transform Dom main Solutions and this one will um uh focus on studying how you
+3:57
+can move from the uh special domain to the frequency domain and we will also see why this is useful for your
+OpenCV and Pillow Basics
+4:05
+task however we can start and the first thing I want to point out is that uh when you want to
+4:13
+process your image there are several libraries that you can use that that um
+4:18
+Implement many uh useful functions um for instance the three that
+4:24
+you will end up use more often are for sure second image below and open CV
+4:30
+second image implements uh um also very complex image processing operations
+4:36
+while pillow and open CV while pillow you will mostly use to uh load your image and maybe change the color space
+4:43
+so from RGB to ybcr while open CV can do both so you can both um load your image
+4:50
+and display them and also apply some sort of image
+4:56
+processing so to start the first thing that we need to do do uh for the um
+5:02
+labatory of today is uh import some um required libraries specifically we have
+5:09
+OS which is pretty useful to apply some sort of P like operation like if you
+5:17
+need to create a directory in python or if you need to copy a file or to move a
+5:23
+file or to understand if um the file you're looking for is in your folder or
+5:28
+in a different one you can use this um this library to implement all these kind
+5:34
+of operations then we have nine that will be used both to convert the images
+5:39
+to matrices or an array and then also apply array matrices like operation then
+5:46
+we have pill which is pillow which says for pillow and you can use it to load your image and change the
+5:53
+color space while M Block lib is used to display um your image or to indeed Plus
+5:59
+your plot so once that we imported these libraries the first thing that we can do
+6:07
+is read the image learn how to read the image with PM um we do it by running the
+6:12
+following chunk of code here um and it's pretty simple so as you can see here we
+6:20
+um we uh import from pill the um well
+6:25
+the function well the module image the module image which has an
+6:30
+inner function called open uh so using the syntax image. open and giving the
+6:37
+path to your image or if the image stays in the same folder of your code just the name of your image you can easily load
+6:43
+your image using pillow and if we check the type of this variable image um we
+6:49
+can see that the class is a pillow jpeg uh image file instead once that we use npy and um
+6:59
+uh most importantly npy do has array syntax we are going to convert this image uh well this class below image to
+7:07
+a class npy array and in this moment we can apply all the kind of matrices and
+7:14
+um Vector like operation and now last um least but not
+7:21
+last uh if you want to plot your image you can use the PLT function of M plot
+7:27
+Li specifically following the syntax PLT do time show then PLT show to
+7:33
+actually display it you can see that here we have a very nice RGB image um of
+7:41
+Lena now we just saw how you can do this using pillow but of course you can also
+7:47
+do the same using open CV however and here I'm already showing the the results
+7:53
+when we are using open CV following the syntax CV2 do I'm read and the name of
+7:58
+your image or path to your image and then we use um PLT do I'm show you can
+8:05
+see that the image um the plotted image loaded with open CV is kind of bluish
+8:13
+this is because open CV um doesn't uh display image in RGB so following the
+8:20
+color space red green and blue but following the BGR so blue clean green
+8:26
+and red and how can we solve this problem because maybe we don't want to
+8:31
+show bluish image but but um RGB image so following the correct order of um the
+8:37
+most conventional c space which is the RGB well you have two possible solutions
+8:42
+both of them are equally uh good so there is not any advantage in using one
+8:48
+with respect to the other um the first one consist in taking your input image
+8:54
+which is the one that you import with open CV split is color channel so you're
+8:59
+going to extract each color channel the B the G and the r which stays for blue green and red and then uh merge them
+9:07
+again following the correct order so red green and blue so RGB and indeed if we
+9:13
+are going to show the merged uh image or better the variable uh that we call merg
+9:19
+that contains the RGB color channel in the correct order you can see that we
+9:26
+have obtained the same results uh um we obtain with the P
+9:31
+Library another possible solutions is to use um um buildin functions on open of open
+9:39
+CV called CVT caller that you can call and um execute using the following um in
+9:45
+the following way and in this case you just uh give two inputs the first one is
+9:51
+your input images so the blueish like image while the second input is CV2
+9:57
+docolor PG R to RGB which means that you want a a color conversion from BGR to
+10:05
+RGB and the final result is basically the same so maybe here the only Advantage is the compactness of the
+10:11
+command that you want to execute or the function you want to execute so in the first part of this
+RGB and YCbCr
+10:19
+class we talk a lot about RGB which is the c space morly use in our
+10:24
+conventional device um so cameras smartphone and even highpod or basically
+10:31
+whatever is used to capture um an image or record a
+10:36
+video um and why so well the RGB color space is a pretty uh fine representation
+10:43
+of our human visual system so how we perceive the color and this is possible
+10:48
+thanks to a color filter array placed in front of the sensor used to capture our image or record our videos which consist
+10:56
+into a series of buyer filters so these buer filters um are aimed to convert the
+11:03
+wavelength Associated to the red the green and the blue color in their act corresponding colors however the bio
+11:10
+filter Associated to the green colors are twice as much as those um Associated
+11:15
+to the red and the blue this is because as we previously said we want to
+11:20
+represent as best as possible the human visual system and our human visual system is much more sensitive to any
+11:28
+kind of uh alteration contrast brightness difference in the um let's say green
+11:35
+color Channel this because in the past um when we were not living in well
+11:41
+structured societies and cities as we are today we were living in a forest or
+11:47
+in environment in which the predominant color were was the the green one and we
+11:53
+developed this mechanism of higher attention on elements that were moving
+11:59
+or maybe that were creating an higher contrast in the screen environment but
+12:05
+maybe they were fluid Predators or other bra how this RGB color is represented in
+12:12
+uh if we take section of it so if we display both the red the green and the blue well to discover this I prepare
+12:20
+here a little um a little script that you can easily run by just playing um
+12:26
+plays and the first thing that one can notice by looking at the screen is that
+12:32
+um there is some sort of difference in terms both of brightness in each color
+12:37
+Channel than in terms of contrast uh which is a consequence indeed of the structure of the color
+12:44
+fitter array and the fact that twice as much buer filter are associated to the
+12:49
+green color if we check the green color with respect to the red one we can see that the red one is much more bright and
+12:57
+it seems like the green uh color channels is able to better capture
+13:03
+different intensities in terms of brightness and Shadow while if we
+13:08
+compare the green color Channel with respect to the blue one we can also see a much difference level in terms of
+13:14
+contrast so it seems um the the level of intensity of the pixels in the blue
+13:20
+color channels they they looks like
+13:26
+um they they looks kind of all the same especially if you check on the on the
+13:33
+textures area and so on so forth they are much less defined than in the case
+13:38
+of the green Channel this is um a consequence of the fact that we are using twice as much buer filter and by
+13:45
+using twice as much buer filter we are able to grasp and capture twice as much
+13:52
+informations all right so the second color Channel then uh that
+13:59
+we that we can study that we will study is the ycbcr color space so the RGB uh
+14:07
+color space is pretty fine if we want to represent an image as close as possible
+14:12
+to how we perceive it uh as human but when you are going to process your image
+14:18
+and to apply operation of image processing you maybe want um to move
+14:24
+from the RGB domain well color space Sorry to the ycbcr y CBC which stays um
+14:31
+for y luminance CB chrominance blue and CR chrominance red the chrominance U
+14:37
+blue is the difference between the blue component B and the luminance while CR
+14:43
+is the difference between the color component red and luminance while the luminance yse
+14:50
+derived has a as I'm reading here has the weight sum of the RGB components to
+14:55
+match the human brightness perceptions then what else we can save um the ycbcr
+15:03
+uh color space is very useful as a said to apply any kind of image processing um
+15:09
+such as also uh compression as it is implemented during the geg compression
+15:15
+pipeline um operation and here I put a little questions um which is what components um
+15:23
+between the ycbcr for you is the best one to process in order to avoid lose in
+15:30
+terms of visual quality when we're then going to convert back our ybc image into
+15:36
+an RGB um to answer these questions then we can just run this piece of code here and
+15:44
+well here we have a presentation of how a ycbcr image is displayed as you can
+15:50
+see it's much difference with respect to the one we we just showed in
+15:55
+RGB but then if we look at each color component so we have the Y the CB and
+16:01
+the CR we can see that the Y component uh looks a lot like the green one for
+16:07
+the RGB so you don't have many redundancy but you have a lot of information in this color Channel you
+16:14
+can mostly just use the Y component of the ycbcr as an image itself or as a
+16:21
+well representation of the original image while the cbnc they look kind of
+16:26
+smooth and they have um very little level of um details and
+16:34
+contrast um this is because uh this two color channel has a lot has a much
+16:40
+higher redundancy in terms of repetition of samples uh or that level of pixels in
+16:47
+in uh in their respective color chandel so the chrominance blue and the chrominance red and this has to make you
+16:53
+think that if you want to down sample apply operations of pro processing
+16:59
+compression and so on and so forth also for implementing the attack for your challenge you may prefer to apply them
+17:06
+to the cbcr channel as there is a much higher redundancy and so even if you get
+17:11
+rid of half of the information of this color Channel probably you are still able to recover the original image and
+17:18
+reduce as much as possible the loss in terms of visual quality while if you apply the same operation to the
+17:24
+luminance channel so to the Y you're probably going to degrade much more the resulting image now all
+17:33
+these um things that we just said about the redundancies uh the highest redundancy and the suitability for
+17:40
+compression and image processing in the chrominance blue and chrominance red Channel with respect to the Luminous one
+17:47
+can be also proved by um the subsequent
+17:52
+um box of code I just put in our in our notebook well first of all uh um just to
+17:59
+mention this little box of code here is just an example that you can use also
+18:04
+for um for the challenge and Implement your code on how you can store an image in J format after you apply some um some
+18:13
+Transformations or any kind of other uh type of processing on the other hand um in this
+18:20
+Li chunk of code here what we are doing is um taking our RGB image converting it
+18:29
+in ybcr and then we are going to apply to the chrominance red chrominance blue
+18:34
+and um the luminance Channel A J compression with a certain value of
+18:40
+quality Factor this this variable here qf so we are taking out our image here
+18:46
+we are converting into ycbcr and we are going to struct each of his channel on in this line
+18:53
+here here we are setting the index of the color channel of ycbcr we want the
+18:59
+process which may be zero one or uh two zero for the luminance one for the
+19:04
+chromos blue and two for the chromos red and then um well here we are going to um
+19:11
+display the first color Channel what the color channel that we are that we have select in the case of zero is the first
+19:19
+one um here no sorry here we are going to display the ybcr image here we are going
+19:27
+to display the single Cor channel the color Channel after we compress it with G compression and then finally the
+19:34
+reconstructed um image containing uh one of his channel um compressed with G
+19:41
+compression and we will use just for this example quality Factor 25 so let's take chromos thre for
+19:49
+instance and um this is the ycbcr the main here you have the color component
+19:55
+before applying any compression and here you have the code component after you apply um dig compression with quality
+20:03
+Factor 25 if we look at the resulting image and if you compare this image with
+20:09
+um the one um opened uh with with pillow at the beginning of our notebook you
+20:16
+miss pooed some artifacts but you can see that there are not so many evident
+20:21
+artifacts and this is for the reason I told you a few minutes ago so the chrominance has such an amount of
+20:28
+redundancy of information in his um color channel f can be divided reduced
+20:36
+by a half or more and still when you're going to reconstruct the image um the visual quality will be pretty
+20:43
+um pretty high and the and the loss will be uh almost
+20:50
+invisible in contrast well we may do the same with chromance blue but um the results would be pretty similar but in
+20:57
+contrast if you are going going to change the index with zero so this time we are processing the
+21:04
+Luminous channel uh you can see that here you have your luminance you have your um processed uh luminance Channel
+21:13
+and when you're are going to um redisplay the image you can see that we
+21:18
+lose a lot of contrast and a lot of details especially on texted areas and
+21:24
+you can also spot if you look closely on flat regions this blocky artifacts typical of djeg
+21:32
+compressions so once again this is a consequence of the less redundancy in terms of information but the highest
+21:39
+diversity in terms of informations of the Luminous channel has is able to better capture and represent every
+21:45
+single features of the RGB image when converted in
+21:52
+ycbcr so uh here then I put additional processing that you can decide to play
+21:58
+with with uh if you want to replicate the experiment that we just uh observed
+22:03
+um and you can apply them to the ycbcr uh color space specifically color
+22:10
+inversion so you're just um applying um an inversion of the pixels value in the
+22:18
+selected color spaces uh then you have a brightness adjustment that you can use
+22:23
+and apply to the luminance channel to adjust the level of brightness of the pixel
+22:29
+and then maybe you can also reconstruct the image and see what happens then you have gamma correction which is used to
+22:34
+assure that the brightness level is perceived accurately and as close as possible to our human visual
+22:41
+system and for sure every time that you run this code you can plot the color
+22:47
+component the resulting color component and then the resulting RGB image um by
+22:54
+following each of these transformation then before moving to the attacks you
+Image Masking
+23:01
+are allowed to use during our competition there are also masking operations that maybe you you want to
+23:09
+use for implementing your attack or in general your code so masking operation
+23:15
+consist in as we can see here in there in this example masing an entire object
+23:21
+or areas in um a given image so uh
+23:27
+following what we just written here we create a copy of IM which is our
+23:32
+image and we call it edited and here what we simply did is selecting a set of
+23:39
+index for each color Channel which is represented here by these two points um let me just select them there
+23:46
+we go so these are the index the starting and the end and the ending index in the um eight um well on the Y
+23:58
+axis on the of our image while um these are the starting and ending index in on
+24:05
+the x-axis of our image and we set them to 20 and to 220
+24:11
+so we set a square and we set all the pixels inside the square for each color Channel because here we put two points
+24:19
+equal to um zero and this is what um what uh we we are outputting and so our
+24:27
+final results now this may not be very suitable for implementing your attack
+24:33
+the day of the challenge however you may decide maybe um combining this kind of
+24:39
+operation with those that we are seeing in the second part of this Library so concerning the um FY transform and so
+24:47
+this derain transformation to locate regions uh where um your companion uh
+24:55
+decid to embed their watermarks so they were more suitable to embed the water mark which may be textured regions here
+25:03
+on the head of Lena or maybe the hair or near the edges of the conter of um of
+25:11
+Lena and so spot this region has more suitable to embed the waterm mark and
+25:17
+then decide to remove it by setting these pixels equal to zero so what is
+25:22
+the main advantage the main advantage is that by doing so you are able to localize your attack
+25:28
+um or maybe uh and we will see it later you may decide not to uh set all this
+25:35
+pixel to zero but maybe set it with the value of nebor or pixels um or even better localize your
+25:44
+attack so some of the attack that we are seeing in just a few minutes to these specific
+Image Cropping and Slicing
+25:50
+regions so following this way of thinking um here we have cropping and
+25:57
+slicing now the probably won't be very useful by itself so how we implement it
+26:03
+here for implementing your attack um what changes that um instead of setting
+26:10
+old pixel of an image as we did here for masking equal to zero here we are going
+26:16
+to extract a crop so maybe a square from
+26:21
+our image and display or maybe an entire slice so the difference is that the crop
+26:26
+is um in the crop Define both the uh vertical and horizontal index that I'm
+26:32
+alighting right now while in the slid we Define just a pair of them so it can be
+26:38
+a vertical slice so an entire slice an entire column of our image or an entire row of
+26:44
+pixels now even here following what we just said of localizing suitable
+26:50
+position where the water mark was in bed and then instead of um removing them by
+26:56
+setting everything equal to zero you may decide to substitute these pixels with
+27:02
+um pixels in neighborhood position this is because if we embed the waterm Mark I
+27:08
+don't know near here on this leaf on Lena hat it may be that by taking a
+27:15
+neighborhood pixel so one very close to the one where the watermark was in bed you can remove it while preserving
+27:22
+somehow the special consistencies of all the AR pixels and you are going going to
+27:28
+lose a very low amount of quality which is also evaluated during the challenge
+27:33
+so the resulting image uh well the quality of the resulting image at which you remove you remove the pixels will be
+27:40
+preserved and this will give you a higher um score at the end of The
+Image Composition
+27:46
+Challenge then we have image composition which is basically what I just described talking about slicing and cropping so
+27:54
+you can see here we um just com OS the new image of Lena by cropping and then
+28:03
+pasting um this head with some Leaf of Lina over her face but if you localize
+28:09
+the watermark which may be over the head and instead of splicing um the whole
+28:15
+crop you're just going to substitute the pixels with neighborhood one well the
+28:20
+resulting image will be preserved while maybe the water Mark will be uh completely completely removed
+28:29
+and then we have other um operations such as rotation flip uh and other basic
+Rotation, Flip and Basic Operations
+28:35
+operations that you can apply using um here we go the open CV uh function CV2
+28:43
+flip CV2 transpose and CV2 rotation in this case I don't think that it will be
+28:49
+um very useful for you for implementing your attack but still there are common operations that um you need to know and
+28:57
+um uh still the May results quite useful what is um very important maybe is being
+29:05
+able to locate the maximum and minimum position well the position of the maximum and minimum uh pixel values and
+29:13
+you can in in the case you have an RGB image you can obtain this result by running this uh few lines of code in
+29:21
+which you're going to check every single channel from zero to well from the first
+29:27
+one channel number one to Chanel Number Three that you need to to Loop however setting the starting
+29:36
+uh index equal to zero and the ending equals to three just by a Convention of
+29:42
+python and then you can use CV2 min max location to get the minimum volume the
+29:47
+maximum volume and the respective location and print them um using this
+29:53
+line uh this line of code so if you play this box of code what happens is that
+30:00
+well you have a representation of the vertical flip horizontal flip transpose and rotation while at the same time you
+30:07
+have the minimum and the maximum value and the location that you can also exploit maybe if the water marking
+30:13
+techniques of one of the other groups is um particularly weak to locate uh where
+30:18
+they embed their pixels uh sorry their water Mark um last but not least before going
+30:27
+through each of the attack you allowed to use for um for the challenge there is Edge detections so um Edge detection may
+Edge Detection: Sobel and Canny Filters
+30:35
+also very useful for you to uh localize attacks or region where a water mark was
+30:43
+embedded this is because usually water marks are embedded on regions where they
+30:49
+are perceptibly uh less visible and as our human eyes is more sensible to contrast
+30:58
+on flat regions so for instance picture of your skin or picture of a flat Sky um
+31:05
+very often your companion will embed their watermark on textured regions such as maybe texture of my shirt or the hair
+31:13
+and this kind of um this kind of surface so um except for this Edge
+31:22
+detection um was uh also very important still very important but it was like a
+31:28
+pillar in modern computer Visions um has most of them were based on edge
+31:33
+detections so um another things is that many Edge
+31:39
+detection hyrid were based on convolution and for this reason they get also very dominant in uh the age of deep
+31:47
+learning but before deep learning Edge detection was performant using convolutional
+31:53
+filters so uh or convolutional B well convolutional aided techniques the first
+32:01
+one um we are going to see is the soel uh Edge detection or better uh the
+32:09
+detections implemented using the um soel
+32:16
+filters and uh I'm just reading here but I just explained the reason why so while
+32:22
+detection should be important also for um for the implementation of your Cod
+32:28
+and of your attack so both for embedding your water mark and attack is because it allows you to localize suitable regions
+32:36
+in which the embedding of your water mark is um more
+32:41
+unperceivable however um there are as I was saying many ways in which you can
+32:47
+detect um edges the first one is using the um soble Edge detection uh method
+32:54
+all soble filter um that are already implemented on open
+33:00
+CV and um well the first thing you just need to do is if you have an RGB image
+33:07
+or a BGR image is converted into gray scale and then you apply your soble
+33:13
+filter which takes an input your um gray scale image that in this case we call it
+33:19
+soel image um and we well we uh set the
+33:26
+direction in which your filter are applied so for instance if we set index equal to zero and then X um index equal
+33:34
+to sorry index equal to one and index equal to zero we are going to detect um
+33:42
+the to detect the um the edges over the X uh
+33:48
+directions and then the other input that this function takes is the kernel size you can play with these parameters you
+33:55
+may decide to use a kernel which is three by 3 so a matrice is containing our convolutional filters of three * 3
+34:04
+or you may decide to enlarge it to five times five or larger or maybe even use them one by one but it won't be very um
+34:11
+very useable and then you need to extract the edges over the
+34:18
+um vertical axis and so in this case the only thing that you need to do is to set
+34:23
+this index as zero and one once that you
+34:28
+dis soble um Edge representation you can also plot them by using these few lines
+34:35
+of code but then if you really want to detect the these edges you need to
+34:40
+further process soel X and soel Y so the representation on the horizontal and
+34:46
+vertical axis and how you do so well you need to compute the magnitude and well and convert the scale
+34:54
+basically uh so that they can be scaled to8 bit for displaying purposes and then
+35:00
+you need to thres these edges so for instance here we decide that to thres the edges as um whatever value are
+35:07
+between 100 and 250 but if you maybe play with this value Now set to 100 or
+35:14
+to the one set to 250 you can also reduce the range of those pixel
+35:19
+values that were detected as uh edges and once you display all your image as
+35:26
+you can see here you have your edges over the x- axis the edges over
+35:31
+the Y AIS and the edges over well the the the whole representation of the of
+35:38
+the edges the second way you have to
+35:43
+[Music] um to detect uh edges on the image is to
+35:48
+use the KY Edge detection method so um The canny Edge detection method is
+35:54
+another winning techniques as I've read here it takes two Thresh the first one determines How likely um Can is to find
+36:02
+an edges and the second one is there is determine How likely um is to follow
+36:09
+these edges once uh it has be found even here uh these functions are
+36:15
+already implemented in open CV so by running this cell of code you will um
+36:22
+have the whole process to detect your Hedges which include taking your he
+36:28
+um taking the GL the gaan blur version of your image which will allow to
+36:34
+um be more precise when detecting your your edges and uh instead of the gausian
+36:40
+blur you can use the me the median filter which we will see in in a few in
+36:46
+a few seconds and then what you do is um well convert from BGR to gray even in
+36:53
+this case and then um you are just going to give an input your gray scale image
+37:00
+the first threshold and the second thresholds you're going to take your Edge results image which is the image on
+37:07
+which you're are going to over impose your Edge detections and how can you over impose your results well by setting
+37:15
+all the index of edge results so your image
+37:21
+um uh so uh all the index corresponding to those of the matrices Edge which
+37:27
+contains the edge representation are different to zero you set them equal to the green color and you will obtain
+37:34
+these results which allow you to detect um the edges in the L image and eventually localize your attack or embed
+37:41
+your waterm marker all right so now that we have um
+37:50
+uh given an overview on the different types of um common IM processing
+37:58
+operations we are going through uh those you are allowed to use to implement your
+38:04
+attack so all your attack can um use
+38:09
+what we have just seen in this notebook specifically the specific attack you are allowed to use are those that we are
+38:15
+presenting right now so to start we are just going to um
+Capture the Mark Attacks
+38:21
+load our image um convert into an array and well here we're just checking the shape and
+38:28
+that you can see is 5502 * 52 * 3 which are the three color channels here in RGB
+38:35
+uh color space because we used uh pillow the first kind of attack we are
+38:41
+seeing is the awgn so additive white coution noise and as is the name suggest
+38:48
+it is used to um add the normally distributed noise to a signal in our
+38:54
+case to an image and how is it implemented is implemented by these functions here Define a WGN which takes
+39:02
+three inputs the first one is of course your image the second one is the
+39:08
+standard deviation which it modules the intensity of the awgn attacks you want
+39:14
+to apply and then it takes the seed value because it's random and so by setting the seed you can change the type
+39:21
+of Randomness uh or make your attack reproducible so the always the same
+39:26
+attack every uh every single time that you that you are going to apply
+39:33
+it and the resulting uh um the resulting attacked images will look exactly like
+39:41
+the one under the title edited now as you can see you need to play very careful with the parameter of the
+39:47
+standard deviations but mostly um you need to know that if you apply this kind of attack on very textured images it
+39:54
+will be much less predominant visible and so deteriorate your images um much
+40:02
+less than when you apply two flat images such the one of Lina so if you want to apply on
+40:08
+nwg uh be careful apply it on textor uh regions so locally or uh globally on
+40:15
+textured images otherwise uh it will be very very visible almost um well
+40:21
+independently by the type of um the type of standard deviation you're
+40:28
+going to to set the second type of attack is the gausian filter used to
+40:35
+apply blurred uh to to your image and basically the gausian filter apply a
+40:41
+kernel which can be 3 * three or larger um and it has a road here it removes or
+40:48
+attenuate the high The High Frequency information contained in uh your
+40:55
+image or maybe also source of noise so a GN so it can be either used to remove a
+41:02
+water mark embedded to text the regions um as is going to cut out the high
+41:08
+frequencies um or to compensate to the disruptive um to the
+41:16
+destructive um results uh after you apply well to the yes dist results after
+41:23
+you apply the a GM as an attack well how does it work these filters as
+41:30
+I'm uh written here it applies a gan function to our image so it apply this
+41:36
+lighing windows that goes from uh the upper left corner to the bottom right
+41:42
+one and is going to apply these Gan functions and B basically weighted each
+41:48
+pixels inside this this kernel and substitute the values at the center of
+41:53
+the kernel indeed if we are going to see this animation we see that we have we have this light in Windows and we see
+41:59
+that we have some spikes and some valy in our matrices but both the spikes then
+42:04
+very negative value so equal to zero get um get basically erased and removed them
+42:12
+by the application of our um of our gaan
+42:18
+filtering um when it could be useful for the challenge I just said when you want to remove something that stays in the ey
+42:24
+frequency so texate regions or when you want to combine it with the disruptive
+42:29
+effects of the aw GM and how do you apply it here we have
+42:35
+the function we are using the IPI um function gausian
+42:40
+filter and uh our blur function takes two parameters so the first one is the
+42:47
+well two variable the first one is our image and the second one is Sigma which is used to
+42:54
+um module the intensity of the cion filter and even here so this is the
+43:00
+reason why you should also apply it locally because if you have an image as Lina which is a good representation of
+43:07
+uh both text rate and flat region image you can see that by applying your cion
+43:12
+filter while on flat region is not visible um is not so visible that you
+43:17
+apply this filter on textured regions you lose basically every kind of informations associated with um texture
+43:26
+uh EDG and contrast and so you will lose a lot in terms of un perceptibility and quality
+43:34
+of your attack then we have the sharpening which is the opposite of the gausian filter
+43:40
+and indeed uh as you can see here we are just applying a gausian filter and then taking basically uh subtracting the
+43:47
+contribute of the gausian filtering and is used to exaggerate uh textured areas or conters
+43:56
+of the image Ed or any kind of edges so even here maybe people didn't embed the
+44:03
+watermark on high frequency but on Mid frequency so you want to use this attack
+44:09
+to uh get rid of of this kind of Watermark but even here be careful
+44:15
+because the final results can be very very disruptive so even here maybe it's better to um to apply it locally instead
+44:24
+of globally finally um here we are we are well very
+44:31
+close to the end of this first notebook we have the medium filtering the medium
+44:36
+filtering is a filtering technique used to remove noise from an image and
+44:42
+preserving the edges so this is the main difference with respect to our gaan filter which is that get rid of
+44:49
+everything so it's mostly effective when um is applied salt and pepper noise is
+44:56
+also very effective when you are combining it with the um KY Edge
+45:02
+detection algorithm but it can also be useful when
+45:07
+the water mark is neither embedded on the high or the low frequencies or it generates um some out layers on um on
+45:16
+the pixel values indeed the medium filtering preserve whatever stays in between while removing out layers so
+45:23
+very low or very high value of pixel will be um basically um erased and
+45:31
+deleted and the final results here I think that is pretty visible um we appli
+45:37
+the filters so we kind of removed all the out layer but uh the image quality
+45:44
+of our resulting image is much better with respect to the one of thing with the gaussian uh gaussian
+45:52
+filter then we have resizing so resizing may be very useful for for you when it's
+45:58
+combined with the ycbc color Transformations because what we are doing and is this represented here in
+46:06
+this function is taking our image uh downscale it so maybe cut off a half the
+46:12
+number of pixels and then upscaling our image the point is that when we are upscaling our images we don't have
+46:19
+anymore the same information has in the original one because we reduce of a half the number of pixels so um we are
+46:28
+removing the market the the water mark by upscaling our image and by well first
+46:34
+by downscaling so reducing the information of Al and then upscaling it so duplicate the information the AL
+46:40
+information that were resulting from the previous operations so looking at our
+46:45
+function if image is our original images and maybe the water Market one and scale
+46:51
+is the type of um the parameter setting the intensity of the down scaling
+46:57
+here for instance we have an image that is M * n and here we applying a down
+47:03
+scaling of a half so we have m m ID 2 * n / two and basically attacked now is
+47:12
+half contains Al of informations of image that we are going to duplicate
+47:17
+then by doing this r scale one divided by scale so during
+47:23
+this first operation that I'm alighting we are removing information and hopefully also the one Associated to The
+47:30
+Watermark and here instead we are duplicating the help of information we
+47:35
+had so that to obtain an image that has the same size of the original one but
+47:41
+that contains intrinsically both in terms of diversity of the pixel and both in terms of Watermark half of the
+47:48
+information but even here you may decided to apply it to uh RGB to the
+47:54
+single color Channel image to RGB image or you may decide to convert this image
+48:00
+into um ycbcr and to downscale just the cbnc channel as you probably will be
+48:07
+very close to remove the information you need so the watermark while preserving the image quality of the of the
+48:14
+resulting uh resulting image and to conclude uh before moving
+48:21
+to the next module we have J compression so in the case of J compressions as you can see we have very intricate algorithm
+48:29
+of JP compressions um luckily you don't have to implement it all by yourself because you have the um implemented
+48:36
+function uh right here but just to go through each of these block how J compression works so you have your
+48:43
+noncompressed image and that you are going to divide it into blocks of size8
+48:49
+pixels time 8 pixels then as we said it is very useful to transform the color
+48:55
+channels of this block from RGB to ycbcr in order to go into
+49:00
+process the cbnc channel and um trying to assure that the resulting image won't
+49:06
+lose its all um visual quality then we're applying a down
+49:12
+sampling which uh is another name for resizing so the resizing function that we just saw to the cbnc channel and then
+49:20
+we are going to apply a discrete cine transform so we are moving from the special domain to um fre frequency
+49:27
+domain specifically um in a domain that is represented into a series of cosine
+49:32
+and S this is because uh under this domain we can apply further processing
+49:38
+and so further reduce the amount of information Associated to this image and
+49:43
+so to further reduce its um storage cost and we do so by first applying
+49:50
+quantization so we move from a continuous signals to a discrete one then we are going to do a zig scan
+49:56
+because we still have matrices and we want to move from matrices to an array
+50:02
+um and the EXA scan allows us to preserve well to reduce redundancy while preserving the low frequencies and then
+50:08
+we are going to use the different pulse code and difference P code modulation to
+50:14
+encode our image and finally obtain our compressed data once that we have our compressed
+50:21
+data want what we have to do is to do the whole process in reverse so we're
+50:27
+going to um decode it our uh compressed data to De quantize to apply the the
+50:33
+inverse D transform upscale D cbcr which however contains out informations and
+50:39
+then um reapply the C transformation so that to move from the ycbcr which is not
+50:45
+very informative for a human High to an RGB and you can apply all these
+50:51
+operations by just using this function JP compressions that takes an input two variable
+50:57
+image and quality factors and return um single variable called attack so
+51:05
+image is our image that we want attack quality factor is a value that goes from
+51:10
+0 to 100 so zero is a very lossy compression you are basically going to
+51:16
+almost destroy the whole image while 100 is a compression which is almost
+51:21
+lossless so in terms of visual quality and loss in terms of quality it will be
+51:26
+very close to the original one and um for instance just to give you
+51:34
+um some some clue if we use JP compression and we give the original image and we use a um Quality Factor
+51:41
+equal to 10 you can um actually see here that the resulting image has a lot of
+51:47
+these blocky artifacts which are very typical of the GP compression so even here you need to use it very carefully
+51:54
+because it's very powerful but also very uh visible and it will reduce a lot the
+52:00
+quality of your attack if um use it without keeping that in mind all right
+Domain Trasformations
+52:06
+so for the second um part of today today labatory we will talk about the main
+52:13
+Transformations um the main Transformations regards all these techniques that allows us to move from
+52:20
+the SP transformation well all right so in the second part of
+52:27
+the class we will talk about uh domain Transformations so as we uh learn in uh
+52:33
+the first part of this Laboratory um the details in images or
+52:38
+suitable areas where embed the water mark or to attack the waterm mark General are found in high frequencies
+52:45
+which are very high alterations of dark and bright area corresponding also to
+52:51
+edges textures and so on and so forth so one possibility to determine these areas
+52:57
+is using Edge detectors and maybe others is to do a more
+53:03
+sophisticate um domain Transformations and the main analysis so to change the main um in
+53:12
+this part of the library we will see some transforms specifically the phosphor transforms we will see the
+53:17
+displate coine transforms and the discrete wave and transforms which all
+53:23
+of them allows us to move from the special domain so domain made by pixels
+53:29
+and um RGB color channels to um the frquency to the
+53:35
+frequency domain and the Transformations all the transformation that we will see can be
+53:41
+both one dimensional so one the signal you have an array and you transform it
+53:46
+into the frequency domain or B dimensional so you have a matrices and you get the corresponding um frequency
+53:54
+transformation of that matrices so as always make sure that your virtual
+54:00
+environment uh is available on your notebook you should see it over here official uncore MDS
+54:07
+environment and the first thing we have to do is always import our requirements
+54:13
+so OS open CV which is CV2 npy and M blly so once that we um read our image
+54:22
+we load our image Lina color then the next thing we are going to do today is to normalize these values
+54:29
+into a range of zero and uh one and the First Transformation we are going to see
+Fast Fourier Transform
+54:36
+is the Fier transforms so the Fier transforms basically decompose um using
+54:44
+convolutions a function of time or space so an array or a matrices into um its
+54:51
+constituent uh frequencies now how can you uh read
+54:58
+these fast video transforms well just uh start looking at the code so how you can
+55:03
+compute it is basically by using the npy function np. fft fft2 and giving as
+55:11
+input your um your image then you can also add np. fft fft shift if you want
+55:20
+to shift all thec component and the low frequencies at the center of your image
+55:25
+and having the high frequencies near the border but this is just a visualization
+55:31
+scheme otherwise you can perfectly keep uh the low frequencies close to the
+55:36
+edges and the high frequencies close to the center of your image well close to
+55:41
+the the center of your fft representation however once that you get
+55:47
+your variable transform which is the fft shift of your signals to visualize it
+55:52
+you also need to get the module um of your transform in you will have a real
+55:59
+part and an imaginary part and maybe um transform it into logarithm scale uh for
+56:06
+a better visualization but what you will see if this is your original image is this
+56:11
+representation so here we use fft shift so the bright area close to the center
+56:17
+of the image is just the DC frequencies while close to the edge you have the
+56:23
+high frequencies already from this representation you may decide to isolate specific areas of this
+56:32
+um um domain of these F year transformations in order to hlate a
+56:39
+certain type of frequencies or to remove certain type of frequencies I will suggest that you don't remove the DC
+56:45
+component but you can easily remove uh frequencies that stay in between the DC
+56:50
+component and the frequencies and the I frequency um themselves um this will
+56:57
+allow you to locate textured area or area that are maybe not completely
+57:03
+textured but also contain some flat regions in your image and you can decide to either exploit this information to
+57:10
+embed your watermark or to attack the water mark now of course once that you have
+57:16
+locate these regions you need to compute the inverse theity transform uh let me see if I run this uh
+57:24
+box of code so it's running um and to uh come back from uh for transformations to
+57:33
+the um image Transformations you just need to run well here you have your oh
+57:38
+sorry it's because I press it two times there we go um here you have the line of
+57:44
+code to implement the fast transform of your image which is called transform not
+57:49
+that here I didn't put fft shift so in this representation I didn't shift the
+57:55
+the DC compon component to the center of the image as I'm showing you right now um so once that you have the
+58:02
+transformation to come back to RGB domain you need to use npy
+58:09
+NP point fft point I fft2 and then be sure that you either put NP real or uh
+58:18
+NP u in Aid so you force um python to
+58:24
+convert your image into real values or integer otherwise it will be um real
+58:31
+values and imaginary values and you will be not able to plot it using PLT I'm
+58:37
+sure as you can see here we um retrieved our original
+58:43
+image the second type of image transformation um you can use is the
+Discrete Cosine Transform
+58:49
+well the main transformation you can use is the discrete cosign Transformations which as we said when we
+58:55
+were talking about J compression it express a signal into a series of cosine and sign it is very good for digital
+59:03
+processing bad optimization and data compression indeed we are also using in
+59:08
+compressions and we are also talking about um digital processing and band optimization because it was invented by
+59:16
+nid Hamed which um and it was adopted and there is an entire episode of the
+59:23
+series This Is Us dedicated to these guys because was adopted and is are adopted still nowadays for our broadcast
+59:30
+transmission J compression and let's say um
+59:36
+multimedia um compression and transmission applications so it gets um
+59:42
+it was a very important discoveries for all the world of telecommunications and
+59:48
+indeed in the series this is asked dedicate an episode um on this guy the C
+59:54
+the med uh um also taking back all what happens in
+1:00:02
+2020 so contextualize it um with what happens during this year and um
+1:00:08
+basically showing uh how different our life will be during this very hard moment without also the discrete cosign
+1:00:16
+transform so um you may ask why the dist coine transform use cosine um well the
+1:00:24
+reason is that you just need a few of them to approximate the whole signals so you can very optimize your signal
+1:00:32
+representations then is real and orthogonal so the inverse Matrix correspond to the transposed Matrix this
+1:00:39
+very fast and is also very efficient in terms of energy allocation so suitable for
+1:00:46
+your water marking embedding techniques and it helps locating
+1:00:51
+areas useful to embed or Target a watermark so even here suitable here has
+1:00:57
+been bad and um pretty useful because it has a optimal energy
+1:01:03
+allocation and then as we said uh all data Transmissions are based on DCT or
+1:01:09
+basically all data transmissions and broadcasting are based on the this is I repeat also the reason why the authors
+1:01:17
+of the series This Is Us dedicate an Enis to theed the inventor of um of the
+1:01:24
+DCT now you may be interesting to know how it is represented when we plot
+1:01:31
+it and mostly how can I comput the DCT so the DCT needs to be computed both on
+1:01:38
+the vertical and horizontal axis so you need to import from CP uh the function
+1:01:44
+DCT and idct DCT to apply the discr cin transform and idct to apply the inverted
+1:01:50
+the inversion of the DCT transform and what you are going to do
+1:01:55
+is to use the following syntax so DCT open parentheses IM which is your images
+1:02:01
+and then you fix the axis on which you want to apply the Transformations and you want anal normalization then inside
+1:02:11
+uh another DCT function you're going to applying the D transformation on the vertical axis and if you're going to
+1:02:18
+plot it you are going to obtain this greenish plot but just because we uh
+1:02:23
+select another another color scape which is not
+1:02:29
+gray and on the upper left corner you have the DC component so those that you
+1:02:35
+don't want to touch if you don't want to lose the whole um let's say the whole
+1:02:41
+visual quality of your resulting image after you uh embed your watermark for instance or after you attacked a
+1:02:48
+watermark while in the bottom right corner you have the high frequencies you can choose um to use basically all the
+1:02:56
+frequencies between what the upper left corner well around over the upper left
+1:03:02
+corner and the bottom right one now if you want to come back to the
+1:03:08
+original RGB or gray scale representation of your image you are just going to use idct um applying well here if you first
+1:03:17
+apply your DCT on the axis zero and then on the axis one then you need to First
+1:03:24
+apply the inverse on the axis one and then on the AIS zeros and specify that
+1:03:29
+you want this value to be converted into um non Pi integer of 8 Bits and you will
+1:03:36
+be and you will obtain the resulting um image in in
+1:03:42
+fact finally uh you have the wavelet uh transform what discrete wavelet
+Discrete Wavelet Transform
+1:03:48
+transform it can be both continuous or discrete but we will probably just see
+1:03:54
+the discrete wavel transform um which uh in contrast with
+1:04:00
+the F transform and DCT can be also seen as a much powerful uh kind of
+1:04:07
+Transformations so uh first of all is a real multiscale and multi resolutions
+1:04:13
+meaning that you have a multi representation of low and high frequencies at multiple scale and um it
+1:04:23
+use an highpass filter and a combination of high and low
+1:04:29
+filters it is well suited for uh interpret and represent as best as
+1:04:35
+possible our human visual system thanks to his multi resolution properties and
+1:04:41
+it allows even here localize suitable frequencies for embedding and attacking
+1:04:46
+a watermark but in general how does it work so let's uh think that we have this
+1:04:55
+image here of these two Cs and as we said is multi um multiscale and multi
+1:05:02
+resolution so what this transformation does is first of all taking this image
+1:05:07
+and applying on the horizontal axis our lopus filter and high pass filter and
+1:05:13
+after that we apply on our vertical axis the same low pass filter to the low pass
+1:05:19
+filtered version of our image and the high pass filterate to the low pass filterate version of our image and we do
+1:05:25
+the same with highpass filtering version of our image so as you can see the resulting uh bands of frequencies is the
+1:05:32
+low frequency version of our input images then we have some midband high
+1:05:39
+low frequencies representation low high frequencies and high high
+1:05:44
+frequencies so the high frequency representation of our image and already with this four pens we may decide to
+1:05:51
+embed our water mark on the HL l a H or HH representation of our orinal images
+1:05:59
+and maybe in that case we will be our embedding strategy strategy will be less
+1:06:06
+perceivable but also less robust while um we may choose because this is what
+1:06:14
+this um domain transformation allows us to do the food process the low uh
+1:06:20
+frequency representation of our input images so the LL representation and we
+1:06:25
+do so basically we take that band and we reapply the discrete cine transform we are not too going to process directly
+1:06:34
+this band because as we learned during the previous notebook processing this band means
+1:06:40
+um have a probably robust embedding strategy but also very perceivable and
+1:06:47
+so it will deteriorate our image but we can further decompose the low low representation of our image and we show
+1:06:55
+with uh right here so probably on your laptop you're able to seeing uh it a bit
+1:07:02
+better in terms of contrast but here we have the High glow high high low high
+1:07:08
+and then here we should have the low low representation but instead we take the low low so this is the low low low low
+1:07:15
+representation so it's the low frequency of the low frequency representation of our images and here we have the high low
+1:07:23
+frequency version of the low frequency quy version um of our images the low
+1:07:29
+frequency the low high frequency of the low frequency version and the high frequency version of the low frequency
+1:07:35
+version of our image so as you can see you can keep playing with this sort of matosa structure of the discrete quing
+1:07:42
+transform um sorry discrete wavel transform and decid which layer on which
+1:07:50
+layer you want to embed your watermark to either acquire more robustness so the more you are composing the more robust
+1:07:56
+you become um so the lower value of the matosa you are going to use the more
+1:08:02
+robust you get or more unperceivable and in that case you will probably decide to remain on the first um on the first
+1:08:09
+layer so those that we obtain right here so on this
+1:08:14
+representation but even here be sure that you don't EMB your watermark on the low low representation LL but on the LH
+1:08:22
+HL or high high and you can also sprad your watermark on multiple sub bands of
+1:08:28
+the same layer so to create redundancy and make it more difficult to be
+1:08:33
+erased now you can compute the DVT um by
+1:08:40
+uh using the function Pi WT and calling D wt2 which will return the coefficients
+1:08:48
+that then you can uh split by following this uh simple uh syntax so you have LL
+1:08:54
+LH H HL HH and here you can then plot each of them in the final image once
+1:09:02
+that you have struck all the the sub band containing the the coefficients of
+1:09:08
+the first layer you can recompose the original image by using ID um
+1:09:18
+wt2 and giving an input the original uh the original supplement if you decide
+1:09:24
+however to de compose further your images so to don't stop at the first layer but to go to the second one so
+1:09:30
+having this representation here you need first to uh use this sub band here to
+1:09:37
+recompose the LL Sub sub band so you need to apply ID wt2 using to this uh
+1:09:45
+this bands here to get the uh LL band of the first layer and then use this LL
+1:09:52
+band of the first layer here to reconstruct your original your original
+1:09:59
+image and with this it's all for today and we will meet in our next laboratory
+1:10:05
+thank you

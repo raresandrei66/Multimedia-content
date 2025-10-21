@@ -1,0 +1,93 @@
+The attacks that can be used can be only the one listed in the lab.
+
+How we parametrize them is up to us.
+
+We cannot use the original image, only the watermarked one.
+
+No blind watermarking techniques acestea trebuie implementate.
+
+
+
+Least Significant Bit (LSB) -> is a blind technique.
+When substitute LSB the visual difference won't be visibile.
+E imperceptibila, dar totimpul exita un tradeof, chiar daca nu sunt vizibili, totusi nu este robust.
+Este cea mai ușoară tehnică, pixelii devin bites si inlocuieste cel mai putini importatnt bit.
+E foarte invizibila, se poate face mai putin invizibila, dar mai robusta, folosind un alt bit decat chiar cel mai putin significat.
+
+Works:
+read the img
+Acele trei linii de la N incolo se poate folsii pentru a crea watermarkul.
+Se poate decide cum dorim noi sa facem embeded la watermark o data sau de mai multe ori.
+Type of the pixel = string, not Integer.
+
+Dupa iar trebuie encodat in pixeli.
+
+
+
+PSNR
+Is measure the differences between the original image and the watermarked image.
+The problem, ofera ceva perceptibil pentru a masura, dar fara a lua in considerare cum sistemul uman lucreaza. Ochiul uman este cel mai sesibili la green colors.
+De asemenea este mai sesnibil la zonle plate (flat). Se vede mai bine pe zonele plate decat cele texturate.
+
+Cand implementam codul de embeded trebui sa verificam cum PSNR ar fi cu robusteta, trebuie sa gasim un echilibru.
+
+
+WPSNR
+
+
+LSB Dtection
+E un exemplu cum watermarking technics sunt slabe.
+In primul rand nu avem voie sa folosim blind technics dar no blind.
+Cum masuram daca watermarkul e similar cu cea pe care am embeduido = Simialrity between the Extracted Watermark and the Original Watermark. Vom avea imaginea noastra cu embeded watermarked si de asemenea attack watermarked image, vom compara similiartiatatile.
+
+
+
+Atenție la Det Tec i-a Iw nu direct W.
+Deci trebuie sa avem grija ca watermarkul la detection si atac sa fie extras dintr-o imagine care are Watermark, daca nu are nu e posibil.
+
+
+--- --- ---
+
+Spread Spectrum Watermarking
+
+Trebuie sa nu replicam 1:1 codul din VS cod, ci sa implementam lucruri mai robuste (folosind notebookul in care se discuta de RGB domains, ar trebui sa adaugam din acelea).
+De asemnea Bato ne va trimite si un paper, ar fi bine sa implementam si acelea.
+
+Spread Spectrum Watermarking
+Aici e bine pentru ca e no blind.
+Daca adaugam bit infromation in large frecv nu sunt perceptibile.
+
+The trad off: tine de coefcinetul pe care in folosim. Ar fi bine sa fie pe Medium freqvenc, sau hl, lh, but no low low.
+
+High-mid frecv acelea trebuie targetate.
+
+Aditive = mai imperceptibil, mai invizibil, dar mai putin robust.
+Multiplicative = e mai vizibil, dar mai robust, trebuie avut la alfa value, pentru ca daca e prea mare distruge imaginea (valorile ar trebui sa fie pana la 0.2).
+
+
+How to set the threshold using the Receiver operating characteristic (ROC) Curve
+E folosit pentru clasificare binara, ca si aceea folosinta in Detectie, cand decidem daca watermark e prezent sau nu.
+Nu putem folosi un trashold de FP, putem intre 0 si 0.1, dar tine de noi ce vom alege.
+Daca este robust putem spune in prezentare ca l-am setat la 0, daca nu e bine ca folosim 0.1.
+S-ar putea sa nu aiba un avataj practic, dar ne ajuta sa putem arata dedicatia pe care am pus-o in cod.
+Primim puncte la prezentare daca ne motivam bine decizia de a folosi 0 sau 0.1.
+
+
+Parametrii atacurilor prezentate a lab anterior trebuie rendomizate si la fel si ordinea executie acestora pentru a vedea exact ROC cum e.
+
+Inainte de a folosii codul ROC trebuie sa vedem atacuriel sa ne jucam cu ele.
+WPSNR < 35 = 0 puncte, pentru ca distrugem imaginea
+Toate atacurile pot elimina watermark-ul, dar trebuie sa prezerve imaginea.
+
+60% dintre atacuri protective este suficinta si dupa ne putem sa ne concentram pe atacuri.
+
+Do not embedded the watermark once, redundanta e improtanta.
+
+
+
+
+
+
+
+
+

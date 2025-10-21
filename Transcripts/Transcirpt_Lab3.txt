@@ -1,0 +1,1049 @@
+Intro
+0:00
+all right good morning everyone and Welcome to our third laboratory so in the laboratory of today we will learn
+0:06
+about the least significant bit water marking the spec Spectrum water marking and about the receiver operating
+0:13
+characteristic curve so the first two are um a blind water marketing techniques and a non-blind water
+0:19
+marketing techniques we will go through the different aspect of these two water marketing techniques in just a few
+0:25
+minutes while the third part of the class is dedicated to the tool you have to use to assess the robustness of your
+0:33
+method and how well you implemented your embedding and detection strategy for the watermarking challenge we will have the
+0:39
+first of uh November before start it's just a couple of notes um has always be sure that you
+0:47
+have organized the code uh the your code as as I'm showing here so you have a
+0:52
+directory containing all the subdirectory uh with the code of our Laboratories as well as the um
+1:00
+two directories of the virtual environment we Implement and um activated in our precedent uh in our in
+1:07
+the predent episode of this series of video then before starting the next
+1:14
+thing you need to check is that um you your um python notebook actually got the
+1:21
+virtual environment activated so just check that this prop window shows official MDS environment otherwise it
+1:28
+will probably when you click click on it it will probably show um a message like
+1:34
+this so select another kernel you need to go on python environment and select
+1:39
+the uh python environment we set up in our previous laboratory now if this is all set we can
+LSB Watermarking
+1:47
+start and we can start talking about the Le significant bit water market so the
+1:52
+less significant bit water marking has a wrot here is a simple and blind digital
+1:57
+Water Market technix why it's blind because you don't need the original image to retrieve the position where you
+2:03
+embed um the water mark and the reason is that the main idea is to substitute the less significant bit or bits of your
+2:13
+um of your image pixels with the most significant bit of your uh waterm
+2:20
+Mark and why so well when you're are going to substitute the less significant bit of your image pixels with the most
+2:27
+significant bit of the uh water Mark what happens is that the resulting
+2:33
+images after you embed your watermark will not present any type of deterioration or quality loss so the W
+2:40
+psnr it will be very high and the fact that you haded a watermark will be
+2:45
+almost unperceivable now uh following this idea
+2:51
+and this reason the pros of this watermarket techniques is that is invisible so once that you embed
+2:57
+something um you canot not spotted by just looking at the image while when you
+3:05
+apply ATT tack to to this image it's very easy to remove the watermark so
+3:10
+this is why this Le significant bit Watermark theic is not a real good
+3:15
+starting point to implement your code for the the challenge but also why it's
+3:20
+um mostly used for weak water marking so if you want to know if someone apply any
+3:25
+type of um slightly um well almost lossless um image processing
+3:34
+technique so if your image has been uh stolen from you and just some gamma
+3:40
+correction or color correction has been applied uh or for um use cases of data
+3:46
+hiding hiding or STI analysis so if you want to hide a message in your medium
+3:51
+and just transmit it being sure that no compression and image processing will be
+3:56
+applied to these images to uh send a message to another person now if uh um this is all clear um
+4:06
+it's time to talk about how um the least significant bit Water Market techniques
+4:12
+is um implement or better how the embedding algorith uh is implemented so
+4:17
+as I said we just need the original images so the nonwater market one from which we
+4:24
+are going to extract each of each uh each of these pixels and the code these
+4:30
+uh image pixels into bytes format so for instance you extract the value of the
+4:36
+pixel that goes from 0 to 255 and you get a string of eight bits so um a
+4:44
+bites now um just a note if you read here 255 and 1 1 one 1 01 um this is not
+4:54
+because the string of bytes correspond to 255 had been randomly generated but it just here to uh show you the entire
+5:02
+process and as as an example so once that you uh decode your image pixel into
+5:08
+bytes uh the second things that you need is your watermark which is another uh
+5:13
+string of bits or array of bits and what you want to do as we said is substitute
+5:20
+the less significant bit of the watermark which here is in red with sorry of the image pixels which here is
+5:26
+in red with the most significant bit of the water mark which here is represented
+5:32
+in green after you substitute these bits then you just need to encode back the
+5:38
+bits the well this yeah the the btes into into pixels and you will obtain
+5:43
+your watermark uh image um how we translate this to code
+5:51
+well um it just here so we for sure need to import as always
+5:57
+some libraries and functions and especially in this case we have OS even if we are not really using it uh npy
+6:05
+open CV and M plot lip that the next thing we need to do is to load our
+6:10
+grayscale image which is called L grade. BNP and
+6:16
+then well we check the image shape and we set the how how long will be our
+6:23
+Watermark specifically in this moment uh so for this for this case it will be uh
+6:29
+off 1024 bits long and then we create our Watermark so we run this first uh um
+6:38
+with this first box of code and then um following this flow
+6:45
+chart uh the once that we have defined our Watermark and our image the next thing that we need to do is to decode
+6:51
+the image pixels back uh well into into bytes so to decode the image pixels into
+6:59
+btes we need to take our image I am and flatten it so move it from matrices uh
+7:05
+from a matrix to to an array and after we flat our image basically for each of its pixel we
+7:12
+should apply this function here format give us input the pixel value and say
+7:18
+that we want to convert it into um a byes which will have this um the
+7:26
+structure here so for the pixel in position zero uh the corresponding PES will be one one 0000 1 0 and as you can
+7:35
+see is a string so you need to keep that in mind because when you're are going to substitute the less significant bit with
+7:40
+the most significant one the most significant one um needs also to be um
+7:45
+in string format um the other things is that we
+7:51
+need to Loop these operations for uh all the pixel of the image so um this is a
+7:58
+bit of a correction but just for the exercise um you have to do for this uh
+8:03
+for this laboratory in class we allocated just the first, 124 pixels uh
+8:09
+well we embed The Watermark just in the first, 24 pixels of the image um however
+8:15
+if you do so and if you change just the less significant well just one bit in the first 1024 pixels um either if you
+8:24
+change the less significant one or the most significant one uh the image will not
+8:30
+uh be degraded in any possible way so you will still always obtain a very large value of
+8:37
+wpsr um however there is an exercise I gave you in which you are asked to
+8:44
+substitute instead of the Les significant bits the most significant one and no really change in terms of um
+8:52
+uh double psnr uh could be measured this is because you need to embed your watermark in all the pixel of the image
+8:59
+and not just in24 but we will see in just a second so following what I just said um
+9:06
+the embedding techniques requires to uh loop through all the pixel and I'm Al
+9:11
+lighting it right now of the images um so that you are going to
+9:18
+substitute in all the image pixel bits the least significant bits with the most
+9:23
+significant bit of the watermark and it's very easy to do it you just need to
+9:28
+set the Loop in which you are going to Loop through the size of the flatten um
+9:35
+image and for each of each pixel you're going to convert them to bytes and then you're going to substitute the uh the
+9:43
+significant bit which stay in position eight um so the less significant bit of
+9:49
+the image pixel which stays in position eight with the most significant uh bits of the watermark which I'm highlighting
+9:56
+right now there is a problem however that image pixel are much more than the
+10:02
+uh bytes uh of the watermark so basically you keep looping
+10:09
+um once that you arrive at pixel 1024 you are going to restart the
+10:15
+counter for the watermark bites so as you can see here we have an index called
+10:20
+index Watermark bit which initially is set equal to zero but when it gets
+10:26
+larger than 10,23 it get re that equal to zero so you can keep embedding your watermark in
+10:33
+all the pixel even if the size of your watermark is much baller than the size of the well the the size of the
+10:42
+image all right so we can press this and it will
+10:48
+embed our watermark in all the image pixels specifically allocating the most
+10:55
+um significant bit of the water mark in all pixels L significant
+11:02
+BD and then the things that you need to do is to reshape your watermark data
+11:08
+because uh now you have your image but in an array form so you need to reshape it to to matric and this is what you're
+11:15
+going to obtain so even here we substituted to the less significant bit but you can see that is almost
+11:21
+unperceivable that we um embed anything um at least in terms of of uh
+11:30
+visual quality but however the day of the challenge you are required to um
+11:36
+assess the quality of your embedding using the double psnr before talking
+11:41
+about the double psnr however we need to introduce the psnr so what is the psnr
+PSNR
+11:46
+as I'm reading as I'm writing here the psnr is one of the most common um visual
+11:54
+perceptual quality assessment technique um and uh the name name means pick
+12:00
+signal to noise durti so this function basically measure the quality of the results being
+12:07
+processed image in your case the water Market one with respect to the original one and how is computed well is computed
+12:15
+by doing 10 the logarithm 10 um of Vmax Square divided the mean square error
+12:21
+where the mean square error is the average square difference between the pixels of the original image and the resulting one your case the water Market
+12:29
+while Vmax is the maximum value um of your pixel in your image so if your image has
+12:36
+values that goes from 0 to 225 the max will be equal to 22 uh 255 sorry
+12:43
+otherwise if your image has values that goes from 0 to one the maximum value will be equal to one and to compute it
+12:50
+is very easy you just need to call the open CV function CV2 Point psnr giv
+12:57
+input the original image I am and the water market and it will uh produce the psnr B which in this case is
+13:06
+51.3 now um however this um pick signal to noise
+WPSNR
+13:13
+ratio doesn't take really into account of um how human beings perceive
+13:20
+alteration on different part of the image to do so we need to use the weighted Peak signal to noise ratio
+13:26
+which take into account our human visual system system and how does it work and the fact that we are more sensible to
+13:32
+see changes in flate region instead of texted one and um do so by implementing
+13:40
+the following equation which is 10 logarithms of 10 of Vmax square and up
+13:46
+to this moment everything is has for the vsnr but we divide the Vmax Square by
+13:53
+the weighted um mean square error where the weighted mean square error is basically the mean square error but we
+13:59
+have um a weight uh in order to take into account um the
+14:06
+different way in which our human visual system uh perceived the changes or
+14:11
+alteration in our image and here is represented by W so um how we translate this this
+14:21
+equation into code we have it written here um so we have the double psnr
+14:28
+functions that to input the original image and the water Market or the attacked Water Market image which in
+14:35
+this case will be image two we normalize our image into scale 0 to one so be sure
+14:40
+that if you have a radi image in scale from 0 to one you're not going to divided by
+14:47
+255 we take the difference um just to be sure that we are not taking the W psnr of the same
+14:54
+image otherwise we are returning um well a billion um
+14:59
+meaning that you are not comparing the original image with uh is processed
+15:06
+version then we importing W which are our weights represented here in the W M
+15:14
+Ms um equation and that in our case are containing this uh CSV
+15:22
+file and finally we are using these weights to compute the denominator of our wpsr functions which is here here
+15:29
+and then um compute the the wsnr in terms of decibel and in this case you
+15:35
+can see that by taking um into account how our human visual system um perceive
+15:44
+difference in the image the W psnr returns values in vable that are even
+15:49
+larger than the one computed with the psnr because it weits this alteration in
+15:55
+a different way and take into account about how we perceive them
+16:00
+so um this will be pretty useful for you to assess the quality of your embedding strategy during the um during the
+16:07
+challenge the next thing that you have to do once that you embed your watermark is to detect it and how can you detect a
+16:15
+water mark in bed with the LSB um strategy well as we said it's a blind
+16:22
+techniques so you cannot really use it um for the challenge if you're not
+16:28
+modifying it to make it non blind but basically um being a blind watermarket
+16:34
+Techni means that you don't need your original image to um find the position
+16:41
+where you embed The Watermark but you just need to know which pixels well with which bits of the pixel bites you change
+16:50
+with the most significant bit of the water mark So once that you have your
+16:56
+image you need to uh move from a matrices to an array as we did before
+17:02
+and then to decode each of each pixels into bytes and to know the next thing
+17:08
+that you need to know is the position of the bite of which you change value so
+17:13
+that to extract it and then um append it into a second array which will contain
+17:18
+your watermark so following this flowchart here um how does this
+17:23
+translate into um code as we said you need the water Market image which you
+17:29
+load uh then you flatten this watermarket image into an array you set
+17:35
+the size of the array that will contain your uh Watermark and a lighting it
+17:40
+right now and then uh you need just to Loop through the first, 24 position but
+17:45
+it can be also the whole image as you change the Le significant beta in all
+17:52
+pixel uh bytes of your image but for this case if you know that the size is24
+17:58
+you can just just Loop through the first 2024 image pixel spites and extract the
+18:05
+um Le significant bit of your um image pixel bytes which will uh which was
+18:12
+substituted with the um with the with the most significant bits of the
+18:18
+watermark so you look through it you append it into your extracted Water Market array and once that you extracted
+18:24
+you want to know if you were actually able to recover your watermark or if
+18:30
+you has not recovered your waterm mark Or you have record another one of if your heage has been processed because
+18:37
+the water mark that you have recover recovered um got lost so to understand if the water mark
+Similarity Function
+18:45
+that you have struck from your image is actually your watermark you need to compare it in terms of similarity with
+18:51
+the original Watermark and to do so we will use the uh cine similarity
+18:56
+functions which takes as numerator the dot product between the two water mark and then normalizes by the two Norm
+19:03
+multiply one by another this numerator um is used so that uh in ter so that if
+19:11
+happens that the magnitude of one of the two the two water mark explode because of any um detection or attacking
+19:20
+processing um this the similarity value will be still normalized in a Range that goes from 0 to one so this is another
+19:27
+things that they want to to point out because the day that we present this laboratory in class we were using a
+19:34
+different similarity function however on this notebook and all the remaining notebook as well as in the communication
+19:41
+I sent you um in the last few days we change the similarity function so that
+19:47
+it follows this um this structure here and um uh this equation that I just
+19:55
+present you so the cine similarity so we have the numerator which is the dot product between um the two the two
+20:04
+Watermark the original which is X and extracted which is xar and is divided by
+20:10
+the two Norm not anymore by just one Norm so this is the uh python function
+20:18
+and translate the similarity equation show just
+20:24
+above and then you don't need just a similarity function but you also need a threshold so you want to compute your
+20:31
+similar function and compare it it with something that let you know if your
+20:37
+similarity is larger than this something which is your thr and so if you actually
+20:42
+retri your watermark or if you are below the threshold your watermark got
+20:48
+lost so here we are showing a very simple script uh with which you can
+20:54
+estimate your um your thresold value however however uh this is not the way
+21:00
+you're going to compute the threshold the day um well for for the day of the challenge indeed we will use the
+21:07
+receiving operating characteristic curve or the raw curve but this is very simple and is
+21:13
+suitable for this for this example just to give you a graphical idea of um what
+21:20
+is uh true detection so what is um the case when you are able to detect your
+21:26
+watermark and what is the case in which you are able to well you're not able to detect it so your water mark got
+21:33
+lost so um this function here to compute the threshold simply take the mark size
+21:38
+which in this case is 1024 um W which is your watermark and N
+21:46
+which is the time uh well the number of sample you want to run to to obtain your
+21:52
+thresholds and what this does is just generating random Watermark compare the similarity with respect to your original
+21:59
+one and then setting the threshold equals to the second largest Value Plus
+22:04
+a certain margin of error which in this case was set to 0.1 so the
+22:10
+10% and by following this pipeline so we are going to take first of all the
+22:15
+similarity between the water mark and extracted Watermark so the original water mark that went bed and the one that we extract and here we have our
+22:22
+similarity value we are going to compute the threshold T which I'm alighting
+22:27
+right now and then we can plot this value and we will obtain the following results so the following results is just
+22:33
+showing us that um we have a certain values well a certain set of values for
+22:40
+the similarity between the original Watermark and the different waterm marks which is the blue line and as you can
+22:45
+see they are all uh below the thresholds and then we have the threshold set by following the process of the function we
+22:52
+just described and the value of similarity in the case the water mark that we extract is uh just the same and
+22:59
+as you can see this value is much larger than our threshold and so every time that we are obtaining a value similar to
+23:06
+X or just larger than the Orange Line in this case we can say that we were able
+23:11
+to retrieve our water mark from our water Market image otherwise if we obtain a value that is um smaller in
+23:19
+that case we need to say that our waterm Mark got lost because of uh attacking
+23:24
+processing image processing in general or um processing of other
+23:30
+nature all right so the second watermarking
+Spread Spectrum Watermarking
+23:36
+techniques we are going to um study today is the SP Spectrum water
+23:43
+marking so and how does this defer with respect to the um least significant bit
+23:50
+water marking well first of all is much more robust than the significant WID and is non blind meaning that um um to to
+23:58
+detect The Watermark we need to be in possession of the original image and why
+24:04
+so well because the space Spectrum water marking embed
+24:09
+um the water mark not anymore in the spatial domain but in the frequency domain specifically is going to embed
+24:18
+our watermark on a much broader and much larger um spectrum of our image so in a
+24:26
+wide range of frequencies has um I wrote like
+24:32
+here and this is follow um also the kind of methodology using the space Spectrum
+24:39
+communication techniques so the point is that by doing so so by embedding our watermark in a broad wide range of um of
+24:47
+frequencies we are able to make our Watermark harder to detect harder to be
+24:53
+attack and so remove and uh much harder to interfere than with with our
+24:59
+Watermark and this is also the reason why these techniques with respect to the least significant bit water marking is
+25:06
+mostly used for copyright protection content authentication and other Security application while the least
+25:12
+significant bit water marking was mostly was used for um well with waterer
+25:19
+marking or almost tampering detection so if we want to understand if the image
+25:26
+was processed in any possible way because it's very easy to be removed or for St analysis or data
+25:33
+hiding so the SP spectrum is used actually for water marking copyright
+25:39
+protections and data protection while the LSB is used for weak water marking
+25:44
+tampering detections and data hiding what are the key concept about
+25:50
+the Spectrum um well to start the SP Spectrum um spread as the name say the
+25:56
+watermark on a broad frequency expand which is much larger than the size of the water mark itself and with this
+26:03
+guarantee both the invisibility and robustness of this method is very robust and resilient to
+26:10
+different types of attack and we will have the chance to try this point during our um
+26:17
+exercise and then the water mark is embedded spreaded on a wider range of
+26:22
+frequencies and during the edding the water mark can be also modulated this is because there are two different way to
+26:28
+embed The Watermark we can either embed it using an additive wave or a multiplicative wave and in both case we
+26:35
+can set or better module the intensity or the strength with which our water
+26:42
+mark get embedded so if we want it to be more robust we we will probably use
+26:49
+larger value of this modulation parameter otherwise if we want to be
+26:54
+more invisible we will use smaller value and so we can find a tra tradeoff between the um
+27:01
+embedding um embedding parameters um sorry the a a trade-off
+27:07
+between robustness and perceptibility in the case of the space
+27:14
+Spectrum um following this um this flowchart here how the embedding works
+27:20
+well the embedding works by taking an image and then we can um use the DCT transformation to move from spatial
+27:27
+domain to frequency domain but you are also free to use the fast per transform or the discrete wavelet
+27:35
+transformation the point is that we are going to move from special domain to frequency domain we are going to apply a
+27:41
+strategy um to select the coefficients maybe we can just sort the coefficients
+27:47
+from the larger to the smaller uh and in this case the sign will be uh irrelevant
+27:52
+so if we you decide to follow this the strategy to embed your water marks so to sort them from the larger to the smaller
+27:59
+um why this um is a suitable strategy because small alteration of bits um well
+28:07
+of the watermark bits on very large coefficient value will translate in a
+28:13
+much larger UN perceptibility in the Water Market image because the alteration given by uh bit equal to0 and
+28:21
+to one in very large value will correspond to a very small um alteration
+28:27
+and um flation in the um water Market
+28:32
+image so we select our confusions then we embed our water mark supposely that
+28:39
+um supposing that our water mark was already generated so we embed it and we can either use the Adaptive wave U the
+28:46
+additive wave or the uh multiplicative wave the main difference is that while
+28:52
+the additive way results tend to result more unperceivable the multiplicative
+28:58
+um SP Spectrum embedding result to be much more robust but in that case the
+29:03
+parameters Alpha which is your modulator parameter must be set very carefully
+29:09
+because um too large value of alpha will correspond to a very damage and Visually
+29:16
+alterated Water Market well resulting Water Market Dage so once that you embed
+29:21
+your water mark on the DCT coefficients or fast PR coefficients or uh D discrete
+29:29
+W and transform uh coefficients you need to compute the inverse transformation which in the case if you're using DCT
+29:36
+will be the inverse DCT transform how do these translates in
+29:42
+terms of code um well as always we need to uh import some libraries in this case
+29:49
+we need the II point fft to get the DCT and idct functions npy mlo open c
+29:58
+CPI and um the
+30:04
+sqrt from the math Library we are going to select the image we want to we want
+30:12
+to Watermark in this case it's always L A gra uh set the size of our Watermark
+30:17
+which in this case is 1024 decide if we want an additive embedding or a multiplicative embedding
+30:23
+in this case we set as a multiplicative we set the value of Alpha and you can see here that for the multiplicative we
+30:30
+need to use a much smaller value of alpha if we decide to
+30:35
+use the a value of alpha equal to 24 probably we are going to destroy the water Market image so the water Market
+30:42
+image will um results in a very distorted image so once that we set all this all
+30:50
+this value the next thing we need to do is to load our image uh by following
+30:57
+this function here and then um well uh we need to embed it using the following
+31:04
+embedding function which I'm lighting right now so um recalling the flowchart um I just
+31:14
+present uh this function takes uh four inputs the first one is our image the
+31:21
+second one is the watermark size because this function is intrinsically generating a water mark inside it
+31:28
+in your case if you use the space Spectrum remove the following highlighted uh lines of code because you
+31:36
+already have a watermark for the challenge and I send it to you and so you can also remove this
+31:42
+input then the second things you need to do is to use to set a value of Alpha and
+31:48
+then you have a variable V which is the type of embeddings in this case is set to well by default is set um as
+31:56
+multiplica so so uh recalling our flowchart first thing we need to do is to move from the spatial domain to the
+32:02
+frequency domain so we apply a DCT transform uh the DC transformation has
+32:08
+to First be applied through following a Direction so the vertical Direction the
+32:13
+horizontal directions then we store the sign of the of the DCT coefficients we
+32:21
+get their absolute value and we sort these coefficients from the larger to
+32:27
+the smaller for following this syntax then we get um the locations of these uh
+32:33
+of these coefficients here we generate our water mark and here is where the
+32:39
+water mark get um truly embedded so um we are going to take the locations of
+32:46
+our um uh DCT coefficients we are going to take the water mark and by following
+32:53
+this equation or the additive one we are going to uh embed them in either an
+32:59
+additive or in a multiplicative way starting from the second larger
+33:05
+coefficients go on um until we embed and we embed in a SP Spectrum Way our
+33:11
+watermark in the entire um DT domain once that we have our water
+33:17
+Market uh DCT coefficients we need to REM multiply them by the sign because we
+33:22
+were working with their absolute values and finally we need to apply the inverse DCT trans information um first in the
+33:31
+last direction to which we apply it so first in axis one then in axis zero and
+33:36
+then remember to use NP uint 8 otherwise you will return matrices of either real
+33:43
+and complex value uh instead we just want integer and you will be not able to
+33:49
+um to block it so once that you get your water Market image then you can use this
+33:55
+function here to store it again uh um has water market. BNP and get your image
+34:01
+uh your water Market image stored um once that you embed The
+34:07
+Watermark um following what we just said for the LSB you need to assess the quality of your embedding strategies and
+34:14
+how you assess the quality of your embed strategy well you use the uh W psnr so
+34:20
+you um you have it here um you can also
+34:25
+can you can also compare it with the the psnr so um you're going to compute the
+34:31
+psnr between the original image and the watermarket image and the original image and the watermarket image you can Al you
+34:39
+will use them also to compute the W psnr and then you can also plot the original
+34:44
+image and the watermarket image so by looking at them you can uh already see that these
+34:52
+two image are looking pretty much the same so visually you wouldn't say that
+34:57
+Water Market image contain a watermark and indeed well here we also use a very
+35:04
+large value of alpha for a mul for a multiplicative multiplicative embedding
+35:09
+strategy but indeed um the wpsr which measure the psnr um waiting it um in
+35:17
+order to take into account our human visual um how how our human visual
+35:22
+system perceives alterations is pretty high and a pretty uh good value of 44
+35:29
+dbel so this is just to say that both by looking at the water Market image then
+35:35
+both when Computing the wsnr uh we can say that by using these parameters and
+35:41
+the with this multiplicative embeding and the spe Spectrum strategy we were able to um embed our our watermark in a
+35:50
+almost unperceivable way or in a way which is very difficult to understand if
+35:55
+it was embedded or not
+36:00
+then always also following what we just said for the LSB um once that we have
+36:06
+embed our Watermark we want to know how we can detect it and as I said this is um non blind strategy meaning that to
+36:15
+detect it you need to know the position of the coefficients in which you embed it in either an additive or a
+36:22
+multiplicative way and to do so you need your original image so checking this flow card
+36:28
+here you need original image to compute the D coefficients select them in the
+36:34
+exact same way you did during the embedding and then you need the water Market image to get DDC coefficients and
+36:42
+then use the coefficient selection of the original image to extract The Watermark from the water Market
+36:49
+image uh even here you need to use the equation for the multiplicative or the
+36:55
+additive embedding so the inverse uh equation for the multiplicative or the additive embeddings to detect your
+37:01
+watermark and once that you detect your water mark you need to compute its similarity and decide whether you were
+37:08
+able to retrieve it or not retrieve it following what we just said also for the
+37:14
+LSP however what is more important is the detection um of the water Market
+37:19
+before we get the similarity value so and this is
+37:26
+translate in the this um function here which takes in input the image the well
+37:33
+the original image the water Market image the value of alpha you also use
+37:38
+during the embedding and the mark size um so you take the original image and
+37:43
+you get the DCT coefficients you do the same with the water Market image and you
+37:48
+get the water Market DCT coefficient you get the absolute value of the DC coefficients of the original and water
+37:55
+Market image and you use well you sort the um water sorry the
+38:04
+original image D coefficient from larger to the smaller because this is the strategy you use to embed it you get the
+38:13
+location and then you just Loop through the first um
+38:18
+1024 um values of the location where you are supposed to have Ed The Watermark
+38:24
+applying the inverse um the inverse equation used for your
+38:30
+embedding strategy so the inverse of the multiplicative equation or the inverse of the additive equation and you store
+38:37
+each of these value in an array called WX which will
+38:43
+contain the water mark You're are going to extract so using this function you're
+38:49
+going to uh obtain your extracted water mark and then as always you need to
+38:55
+decide whether you were able to extract it or not and uh well you need to set the threshold in this case we are just
+39:01
+setting it with this very simple function computor th but we will use
+39:08
+then in our future work at the uh receiver operating C so you get the similarity between the
+39:15
+real Watermark and extracted watermark in this line here that I'm lighting and
+39:21
+then you compute that threshold and you compare this value of similarity with the value of threshold and in this case
+39:26
+the threshold was to 0.7 and the Mark um is the side that has
+39:32
+being found since our similarity is basically almost equal to one so we have
+39:38
+0.99 uh of similarity now
+39:46
+um we we just went through the least significant bit water mark in the SP
+39:51
+Spectrum water marking and we talk about how embedding detection uh um perceptor
+39:58
+qualities measure using the double psnr and also how the um similarity between
+40:05
+be instructed and the real water Market is estimated um and we also set our first
+40:11
+um thresholds but we are not as I said we are not going to use this function here that I'm going to alight right now
+40:19
+uh to estimate the threshold for the day of the challenge we are going to use the receiver operating characteristic curve
+ROC Curve
+40:26
+so what is the the receiver the receiving the receiver operating characteristic curve um
+40:34
+so is a very simple yet effective graphic scream graphic scheme for binary
+40:41
+classification on the x-axis you have represented the false positive rate of
+40:47
+your detector on the y- axis the true positive rate and the good things is that each point of the curve correspond
+40:53
+to a certain Trac and why this should be important important because uh you need
+40:59
+to use these tool so the rock carve the receiver operating curve operating
+41:04
+characteristic curve to set your threshold and how you
+41:09
+should set your threshold well you can choose the threshold you prefer has a tradeoff between the false positive rate
+41:16
+and the true positive rate just to let you know uh we will use a false posit
+41:21
+well we will take into account all the threshold for for false positive rate smaller than
+41:29
+0.1 why 0.1 because it correspond that every I don't know 10 image you're going
+41:35
+to um misclassify one of these image
+41:40
+or uh over 100 10 of this so we try to keep the margin of error as small as
+41:48
+possible all right um and how can you generate the rock
+41:54
+curve well to generate the rock curve you will need the two arrays um an array
+42:00
+of scores and an array of labels so um the array of scores will contain the
+42:08
+similarity values between the original Watermark and the one that you extract
+42:13
+from your image or from your image after an attack as well as the similarity
+42:19
+value between the original Watermark and other watermarks which are not yours and
+42:25
+then the label array will contain um value equal to one if the if a
+42:31
+similarity value is corresponding between the original Watermark and the
+42:37
+one that you extract from an image with or without being attacked and the two watermarks are the same or equal to zero
+42:44
+if the similarity value is computed between the original Watermark and a watermark that it's not yours so in this
+42:52
+way we are able to understand how your detector will be robust to attack
+42:58
+because maybe you can attack it several times but you will be still able to retrieve a very large value of
+43:04
+similarity similarity value of similarity or what are the weakness
+43:10
+maybe your method suffer more when certain types of attacks are
+43:16
+applied so following these two methodologies and that are also described in this uh uh in this view
+43:23
+points here where I wrote how can I generate the rock what what you will obtain is um curves pretty similar to
+43:31
+the one just shown in figure now this example here in figures I think that is a good example to understand when you
+43:40
+obtain um well well better when your rock carve is representative of a very robust
+43:47
+embedding and detection strategy for your water mark water marking techniques and whether it can still improve so if
+43:55
+we take for example the um dark line the black dark line so in this case
+44:02
+you can see that the classification is pretty good um we have for very small
+44:08
+Force positive rate values almost equal to zero are already very large value of
+44:14
+true positive rate it means that maybe we can obtain uh 90% of um true positive
+44:21
+rate with a margin of error well with a false positive rate almost equal to zero
+44:26
+so our method is very robust in detecting whether a watermark that we retrieve is the one that we embed on an
+44:34
+image and um it not it does not commit error misidentifying it with a fake
+44:41
+one so in this case if you obtain a rock carve similar to the black um to the black one to the black uh to the black
+44:49
+line um we say that you can choose any threshold between 0o and 0.1 however I
+44:55
+will suggest you that you still s with the smallest false positive rate as
+45:00
+possible and then the data you need to present your your project justify this decision by telling me well this method
+45:08
+was already performing very very good uh for very small value of false positive
+45:13
+rate so we think that it was unnecessary move for a larger one uh in order to and
+45:19
+so we rather keep the FSE positive rate so the error rate of our method as small
+45:25
+as possible so make it as precise as possible both during the uh true positive rate and both during the false
+45:32
+positive rate in contrast if your method produce results similar to the red line well in
+45:40
+that case uh since it is allowed to use false positive rate as close as possible
+45:46
+to 0.1 I expect you that you justify your choice to attal set for a c
+45:52
+positivity rate equal to 0.1 saying well our method for very small positive rate
+45:58
+uh doesn't perform as good as we expect so in order to get a bit um a little bit
+46:04
+of robustness or of additional robustness during um when when other groups attacks our image where we embed
+46:11
+our Watermark we decide to take the maximum values of positive
+46:18
+rate then if this is clear um the next question will be okay we understood that
+46:24
+we need a score array and a labels array but how we Implement a rock cve and how
+46:31
+we plot a rock cve using python well is much simpler than what I
+46:37
+what I just um described in the last few minutes indeed uh as always you need
+46:43
+some libraries which are the one that I light right now and then you need um as I said a score array which is
+46:51
+here to which we make it corresponds a labor array so even here
+46:57
+supposing that the first uh elements of these arrays so the first half of this
+47:03
+score array um are the similarity value between the original Watermark and the
+47:12
+same one extract from an image that was attacked or not then to this value on the label
+47:18
+array will correspond the value equal to one as I'm alighting right now while if
+47:24
+the similarity value correspond to with the similarity between the original Watermark and a water mark that was not
+47:31
+embedded so not the same water mark embedded on an image um to this value to
+47:37
+this similarity value that I Allied will correspond the label equal to zero so
+47:43
+once that you have your score and label array you just need to feed in to the Rock curve functions which will produce
+47:50
+the false positive rate the true positive rate and the um array tow which
+47:56
+will contain the corresponding threshold for each false positive and true positive um rate values in the fpr and
+48:04
+DPR um variable then you can also use the fpr
+48:10
+and tpr so the F positive rate and two positive rate to compute the RO um The Rock carve Au which somehow show how
+48:19
+good your classifying method while your classifier performs however if you
+48:24
+decide to report this value during your presentations be sure to give me this
+48:30
+value in a Range that goes from 0 to to 0.1 because this is the range of interest uh in which your classifier has
+48:37
+to work for Zer to one it will probably um return
+48:44
+Au close to 0.9 but is not very representative for me of how your
+48:50
+classification method is working then uh as I said you get your
+48:58
+um area under the curve but then you want to plot your rock cve so to plot your rock carve what you need to do is
+49:04
+to use the PLT function of M Block lip and following this syntax sorry here
+49:11
+following this syntax here so that we have the first positive rate and true positive rate array is going to
+49:17
+interpolate the point and is going to return your rock carve here um another
+49:22
+little note whenever you see in your rock carve this sort of plateau
+49:27
+uh so this um yeah this uh straight horizontal line is because you are
+49:35
+either not using a large enough amount of data to plot your raw carve so you should increase the number of image or
+49:41
+you should differentiate the more the types of attack that you are applying to this image so maybe you're just
+49:46
+considering a too small number of attacks or a too strict range of
+49:53
+parameters with which you apply your attack we will see another example in a few
+49:59
+minutes um once that you get your rock cve however you also need to set the
+50:04
+threshold and to set the threshold you can use the following uh script here to get the
+50:11
+index corresponding to a false positive rate in this case equal to 0.05 or better the value closest to a
+50:18
+false positive rate of 0.05 and then you can use the following lines to um check
+50:25
+the corresponding true positive rate to a FSE positive rate as close as possible to 0.05 the corresponding the threshold
+50:33
+corresponding to this values of false positive rate and then um well you can
+50:38
+also double check the false positive rate so another things is that if your um amount of data that you are using is
+50:44
+too small then uh it may occur that your value of f positive rate being at the
+50:50
+one as close as possible to 0.05 will um not
+50:57
+be such a good approximation for instance here because we use not many
+51:02
+data to plot this rock curve the one that I'm showing um we are able to
+51:07
+approximate a f positive rate equal to 0.05 getting as close as possible with a
+51:13
+value equal to 0.09 so as always if you need to plot the rock curve use as many
+51:20
+data as you can as many attacks as you can and um yeah make sure that your
+51:27
+um set of scores label contains as many sample as possible not just a few one
+51:33
+not just 100 but goes for 500 or
+51:39
+more and here I wrote what F positive rate should I choose well um I think
+51:45
+that I mention it a few minutes ago but anyway um the FSE positive rate that you should choose if your detector is
+51:52
+already performing very well so for forse positive rate very close to zero get more than 0.7 0.8 or 0.9 get choose
+52:01
+the FSE positive rate um that is closest
+52:06
+to zero so in this case you come to me and say well our method was already performing well um we decide to be very
+52:14
+conservative in terms of error um and uh provide the largest um positive rate
+52:21
+corresponding to the lowest amount of error that our method will commit in contrast if your method is maybe
+52:28
+unperceivable but not so robust and you see that you can gain some extra point in terms of robustness um choosing a
+52:36
+false positive rate as close as possible to 0.1 you should go for this
+52:42
+value all right um to conclude uh this
+52:48
+uh this notebook here um how do we apply the rock carve to our water marking
+52:53
+strategies because right now we just have a toy example with an array of scores and an array of
+52:59
+labels um in the case of rock apply to water marking techniques um for sure you
+53:07
+need your embedding strategy which in this case in the example here we are using the SP Spectrum the detection
+53:13
+strategy which is the one of the SP Spectrum then you need to import your similarity value because you need to
+53:19
+compute it for both the case in which you Computing similarity between the same Watermark the original and the one
+53:25
+extracted from the image in the case they are the same both for the cases where the original Watermark and the one
+53:32
+extract from the from the image are not the same and then you also need to consider
+53:38
+a series of attack which here we are just using um well we are just selecting
+53:43
+them in a random way but with fixed value parameters in your case my
+53:49
+suggestion is that you also randomize the parameters used to apply each of
+53:54
+attack in order to um use uh as many
+53:59
+different attack as possible and get a better estimation of your
+54:05
+rocker um so once that you have set up your embedding detection similarity value wpsr and the um random attack
+54:16
+strategy uh you need to load your image in your case it must be images otherwise
+54:21
+you will have problems of plateau because of a scun um amount of diver
+54:26
+in your similarity samples and then you're going to build a mini data set of n 999 samples or as I
+54:36
+wrote here 500 samples of your water
+54:41
+Market images Water Market image your case images attacked the by randoms um
+54:48
+image processing attack so you can take this code and readapt it so that you're going to
+54:56
+obtain a scores array of similarity value and the label arrays of um of um
+55:02
+well the corresponding label um for this similarity value and then you can use it
+55:08
+to compute Your Rocker so you see here because I just used one single image and
+55:13
+um well seven attacks almost but all with the same parameters what happens is
+55:18
+that I obtain this sort of plateus how you
+55:23
+um how you make sure to not obtain M these plateaus uh by using more images
+55:29
+and differentiate the types of attack you're going to apply to your water
+55:34
+Market image so not just a few of them but also play with the number of images and the
+55:41
+set of parameters use to apply the attack to your images and then with some
+55:47
+patience you just write your code once that you're embedding strategy and detection strategy is set up and you let
+55:53
+it run for I don't know a hour or a couple of hours so that you are able to obtain all these scores and labels
+56:00
+values and at that point you uh can plot a very nice rocker which is very
+56:05
+representative of any possible case and attack um any possible embedding case
+56:11
+and uh detection attack you will receive the day of the
+56:16
+challenge and with this um I conclude this um this laboratory and uh we will
+56:24
+meet in our next one thank you

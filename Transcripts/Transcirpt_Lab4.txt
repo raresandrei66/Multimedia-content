@@ -1,0 +1,657 @@
+Intro to LSB Exercises
+0:00
+all right so um welcome back everyone in today's laboratory we will check some of
+0:08
+the exercise I gave in after the laboratory on the LSP space spectro and
+0:15
+uh Roc so the rocker um we will go through each of them uh then we will
+0:22
+also discuss them um in class so the first two exercise were about the LSB
+0:30
+and um the first one was uh using the LSB water marking and bet the water mark
+0:35
+in a bit that is neither the LSB or the MSB of of course we are referring here
+0:42
+to the image pixel btes and tell what happens how this
+0:47
+affect the results in terms of w psnr so um some of you have some problems about
+0:53
+this exercise because of um um a small error during the implement mentations of
+1:01
+the LSB watermarking embedding code um that I gave in class and that I correct
+1:07
+in my past video so um basically what we were doing was
+1:13
+embedding the watermark in the first uh ,24 pixel bits so we were changing for
+1:20
+this first 1024 pixel bits the less significant bit with the most significant V now um the point is that
+1:27
+if we are not doing this change of the LS SB with the MSB for all the image
+1:33
+pixels uh but just for the first 2024 you can even change the most significant
+1:39
+bit but the loss in terms of perceptual quality will not be the one that one uh
+1:45
+will expect so um this is why I correct the code that I upload also to the
+1:52
+platform and I say it in my in my previous uh in my previous video for our
+1:58
+labatory that um the embedding strategy even if you have a water mark of 2024
+2:04
+requires to embed the most significant bit of the watermark in every less uh
+2:10
+less significant bit of the image pixels so you need to Loop through all the
+2:15
+image pixels bits and substitute the less significant bit of these pixels with the most significant bit of the
+2:21
+waterm and by think by doing so when you're going to change the less significant bit um instead of the less
+2:27
+significant bit the more significant bit of the image the results will be um much
+2:33
+different and you will actually observe this loss in terms of perceptor quality in the Water Market image so we will see
+2:41
+this and then the second point was embed the water mark and then attack your image before extracting the waterm Mark
+2:47
+can you still recover the waterm Mark if yes when and how which attacks are the
+2:52
+most the most effective um which bit position guaranteed more robustness how does this
+2:59
+affect damage quity so here I just wrote the code that you can reuse and play to
+3:04
+answer the questions but you will have the code to get this answer um written
+3:12
+in the solution and here uh I put in my can in a very large font um
+3:20
+thisat of what I just mentioned so how you should embed the Le significant well
+3:26
+the the LSP Watermark uh in order to receive the loss of quality if you're changing not the least significant bit
+LSB EX. 1
+3:33
+but the most significant bit so um exercise
+3:38
+one we need to get our WPS our functions and then you need to get your image
+3:46
+Linea gray the image shape the size of the water mark we initialize a water mark here and then um well we flatten
+3:54
+our image and here uh in this uh in this ver
+4:00
+here we flatten our images to substitute the least significant bit in our image instead here we flatten it to substitute
+4:07
+the most significant bit of our image and then we have our embedding strategy so here uh is the normal embedding
+4:14
+strategy for the least significant bit there we go and as you can see here
+4:19
+we're going through Loop for all the image pixels convert them into bytes and then
+4:26
+substitute the least significant bit of the image pixel bite with the most significant bit of
+4:32
+the waterm pretty easy as that has for as we did in our notbook and we are
+4:38
+doing this for all the image pixels in contrast when we are going to
+4:43
+substitute the most significant bit as you can see here we are keeping the um
+4:49
+first uh most significant bit of the image otherwise we are going to completely destroy our image and we are
+4:55
+going to substitute the um the most the second most significant bit
+5:03
+of our image pixels with the one of the watermark and keep the rest so the the
+5:09
+the significant bit of the image pixels um to the four image pixels LSB well
+5:17
+here to the MSB and I'm going to correct it right now all
+5:23
+right um after we embed the well after we embed the waterm substituting in this
+5:29
+case the most significant bit well the second most significant bit and here the less significant bit in our image of
+5:36
+course we need to take encode back um the the btes into
+5:42
+pixels reshape them and as you can see this is the results so um you can
+5:48
+practically see the original image the image where we embed the watermark in the less significant bit with a large
+5:54
+wpsr value of 64 and then the image where we embed the watermark in the
+5:59
+second the most significant bit which has a w psnr of 23 and as you can see is visually
+6:05
+destroyed instead for the second Point um the question was uh embed the water
+6:12
+mark and then attack it and if you are still able to recover it if yes when
+6:18
+what is the best position to Ed The Watermark and so on so forth so here I just prepared the code that you can use
+6:24
+to play and hust on the question even here we need the similarity function I select a the awgn attack but you can use
+LSB EX. 2
+6:32
+whatever attack you want you can also Loop through the attack that we so in our previous Library um and here we are taking the
+6:40
+image Water Market using the LSB and embedding the water Market in the less significant bit and we are applying a
+6:48
+very weak attack with a standard deviation for the awgn of
+6:53
+0.1 so um we are going to detect our water mark and then we are going to plot
+7:01
+The Watermark well the original image the water Market image I believe um not the water Market image
+7:08
+the attacked image and then we are going to check whether the watermark was
+7:14
+retrieved or not so even here the threshold was set to 0.7 but just with this very weak attack
+7:21
+and you can see it here I mean you can compare the water Market image and the attack Water Market images I mean you
+7:27
+can look closely but they look practically the same same because the awgn was applied but it was a very weak
+7:32
+one uh still by doing so and by embedding in the less significant bit the uh Mark was completely
+7:40
+lost so now you can start playing trying to embed into a different bit position
+7:46
+um apply different kind of attack and check to which attack this techniques is more robust but just keep in mind that
+7:53
+is also implemented for data hiding and tempering detection so to understand if
+7:58
+any type of processing were applied to our image so don't believe that this
+8:04
+method will be much more robust than well what we just saw you can play with
+8:09
+it probably there will be some casing which will be more robust but um if you
+8:14
+decide to go for the LSB to implement the code for the challenge just know that every group will be able to destroy
+8:21
+your watermark and in fact here uh well we
+8:27
+have the different watermarks uh uh values in blue the thresold set to 0.7
+8:32
+and the value similarity of um between the same water mark after the image
+8:38
+embedded with the LSP was attacked is much lower than the thras so we obtain
+SS EX.1, 2 and 3
+8:45
+0.4 okay um then we have five exercise
+8:51
+with the SP Spectrum the first three are all um sold in these uh in this in the
+8:58
+first box of of the our exercise Solutions and has to change the value of alpha compute the psnr and W psnr of the
+9:06
+water Market images for these three value of alpha um using the
+9:11
+multiplicative version for the embedding and then I was
+9:17
+asking if you can still detect The Watermark if the image is attacked uh and then try to use different attack and
+9:24
+see how this affect the detection so even for this third point I just use a single fact because then you can take my
+9:31
+solution and play with it and solve it yourself but the entire code is implemented um in this uh in this box
+9:38
+here so as always we import our libraries we get our similarity function
+9:44
+we get our detection function we get our um well we set up our um no sorry
+9:52
+similarity function detection function I was reading what what was written in the detection function but is the same one
+9:58
+always used for the SP spectrum and that we already explained we have the function defining how you compute the
+10:05
+threshold with the with the methods you are not allowed to use during the challenge but just for Simplicity in
+10:11
+this case and then here we have our awgn attack the W psnr function and our
+10:18
+embedding strategy so what I did here is first of all well read my image which is
+10:24
+len gray set up the watermark size 2024 um decide to use a multiplicative
+10:31
+embedding and then I choose three values of alpha 0.05 0.1 and 0.2 so what
+10:38
+happens is that what do I expect I expect that 0.05 will guarantee um um
+10:44
+better invisibility of the waterm mark that I embedd so the water Market images will look almost as no watermark was
+10:51
+embedded but it's robustness will be much um smaller than the one obtained um
+10:58
+using 0.2 well 0.1 should be by using the original implementation of this spe Spectrum some
+11:05
+sort of tradeoff between um the multiplicative embedding using 0.05 and
+11:10
+0 uh two so once I theide the set of
+11:16
+parameters I read my image and uh then I just look through the different value of
+11:22
+alpha embedding them using 0.05 then 0.1 then
+11:27
+0.2 um right here here I'm applying always the
+11:33
+same type of attack that you can change also to answer to one of the question of
+11:39
+point one two and three so here I just select awgn but with standard deviation
+11:45
+of 15 so you can see that here with respect to the LSB I'm using a much larger value of standard deviation
+11:51
+meaning that this method is much more robust than the LSP and I'm going to attack this image
+11:57
+I'm going to detect The Watermark from the water Market image as you should do the day of the challenge and then detect
+12:04
+the water mark from the attack image so that I can then compute the W psnr
+12:09
+between the water Market image and the original one and the attacked image and the original
+12:15
+one and I can print this value so I can also see how much this attack has
+12:22
+degrade My Water Market image and then I give some conclusion
+12:28
+also based on this because maybe I'm able to remove the watermark but I'm also destroying the image so if other
+12:36
+group are able to remove your watermark but they destroy the image then they're not gaining as many point as they would
+12:43
+while you're gaining some points because your method proved to be well not
+12:49
+undestructible but robust to very strong attack all right um and then I compute
+12:56
+the similarity I compute the similarity between The Watermark extracted from the watermark image and the watermark
+13:03
+extracted from the attacked one as you should do the day of the challenge and then um but this you're not going to do
+13:10
+it the the challenge the similarity between the original Watermark and the water Market stru from the um the water
+13:18
+Market image just to give me uh some sort of indication of how
+13:26
+degraded um get the value of of um the water mark instructed well the value
+13:32
+similarity um using the water mark instructed from the attack of the image after the attack was
+13:38
+implemented here we compute the thresholds and then uh well always the same uh the same binary decision uh to
+13:47
+choose if the Sim well if the water mark extracted from the non attacked image
+13:53
+was retrieved and if was retrieved also the watermark distracted from the attacked image so here we have the
+14:00
+results divided by a value of alpha there is a scrollable element link here
+14:06
+that you can just press so you can see the whole um the whole um
+14:11
+output so first of all you need we tried with Alpha equal to
+14:18
+0.05 and um what happens it happens that the double psnr for the non attacked
+14:23
+image is 49 so is um a decent value it will be more % able but still you could
+14:30
+gain um good amount of Point uh and then after you attack the image the W psnr um
+14:37
+is around 39 so I think that is almost a perfect tradeoff suboptimal solution
+14:44
+because you are probably gaining three point in terms of robustness and Who attack you three points the threshold
+14:51
+was seted to 0.7 the similarity um between the water mark and the non
+14:56
+attacked image is almost equal to one so retreat while uh the one in the attacked image
+15:02
+however is lost so um 3 point attack equality for
+15:07
+the other group I think and three point for you because of the robustness but the
+15:15
+maybe you could do better so in this case you're using 0.1 and the W psnr of the non attacked image is 44 which is
+15:23
+still pretty decent you used Five Points in terms of decibel but um um it's still
+15:29
+a good um value that probably will take away from you some points in terms of un
+15:36
+perceptibility of your embeding strategy but will give you some extra point in terms of robustness because um using the
+15:43
+same types of attack the double PSAR of the attacked image drop to 38 so the
+15:48
+other groups will um in case they are able to erase your watermark they will obtain only a few
+15:55
+points but uh with um um a WGN with
+16:00
+standard deviation equal to 15 which degrades the wpsr to a value of 38 they
+16:06
+won be able to remove your water mark in the similarity will be equal to 0.8 and
+16:12
+now we get that the water Mark has been found then we have 0.2 um with 0.2 the
+16:20
+no water Market image get a psnr 38 which is a very small value meaning that
+16:27
+in terms of a perceptibility you will obtain um well probably one or two point
+16:34
+but even here you gain a lot in terms of robustness because with this attack still you are able with this well with
+16:41
+this attack of the WGN with standard deviation 15 and the um Alpha equal 0.2
+16:48
+for a multiplicative method uh you are still able to retrieve your water mark with a similarity of
+16:54
+0.93 so they needs to go pretty hard on your image and destroy it to gain one
+17:00
+point and to remove uh your watermark but probably you will not be between the
+17:06
+contender or winning the the the challenge by just using this technique because you are losing many points in
+17:13
+terms of un perceptibility of your embedding strategy so these were the solution for
+17:20
+point one two and three and now you can also Loop using different type of attacks and different value of parameters in order to answer the
+17:27
+remaining open questions and then we have Point number four I need to scroll
+SS EX. 4
+17:32
+up um which is play with the complete SP Spectrum code and B plus detection and
+17:40
+see what happens if you select different coefficients low to mid frequency so to adapt this
+17:46
+code as the watermark is always spread to um broad range of frequency I just
+17:54
+adopted the detection and embedding function setting a start in index value
+18:00
+here which you can use to start the index of location in which you want to
+18:05
+embed The Watermark and get the corresponding value in the uh detection
+18:10
+function so you can play with this value you can set it to zero you can set it to one you can set it to um 10,000 or a
+18:18
+larger value and you can see what happens when you choose a smaller range
+18:24
+of frequencies or you decide to Target a certain type of frequency with respect
+18:29
+to others um but basically the takeaway that we have here is that um if we use
+18:38
+0.1 as Alpha and a multiplicative embedding strategies and we decide to
+18:44
+take the pixels well the coefficients locations after the number 10,000 so we
+18:51
+keep the most robust one it happens that we reduce the range of coefficients that
+18:56
+we are using um we are skipping completely the first 10,000 in which we
+19:02
+are somehow more more robust and so we get a better un
+19:07
+perceptibility of 58 but at the same times we get much weaker so here with
+19:13
+0.1 um we get 58 W psnr but once they apply a the WGN um with um standard
+19:22
+deviation equal to 15 well before we were able to retrieve our water mark but here they are able to remove it indeed
+19:29
+our similarity is of 0.44 so we are much above the
+19:34
+thres uh sorry much below the thresold and finally uh then even here
+19:41
+you can play with the code and get the answer to your question but the code is implemented and working and then you have Point number
+SS EX.5
+19:50
+five which is substitute the DCT with a transformation of your choice wavelet or
+19:55
+fft here there is a typo let me correct it or fft there we go which one works
+20:02
+better does it improve or Worse the results obtained using the DCT um here I
+20:09
+implement the code using the DWT so the wavelet discrete transform discrete wave
+20:15
+transform you can use it as example and then Implement your own version and
+20:21
+maybe also the version of the challenge but you can use this code for um your
+20:26
+experimenting purposes so even here as always we take the
+20:32
+similarity function the threshold functions do get the threshold for our easy
+20:38
+classifier um we take the awgn attack we get the double psnr and then here we
+20:45
+have the embeding so I substitute the DCT Transformations with the discrete
+20:51
+wavelet transformation so with the DWT transform
+20:57
+um as you know the DWT with respect to the DCT is um multi-resolution
+21:05
+um so you can get a multiple version a multic scale multi resolution we you can
+21:11
+get multiple version of the same low high I low high guy and low
+21:19
+low frequency here I sto to the first layer so we have low low high low low
+21:25
+high and high high frequency but the idea remain the same of this SP Spectrum so we are changing
+21:32
+slightly uh transformation domain but we are going to embed um different times the water marks
+21:41
+into each of these subed specifically looking at the code we're going to embed it in the low high high low and high
+21:48
+hike so what how I prepare the code is that I'm following multiple times the
+21:54
+same process I used for the DCT but for the single sub band so for instance I
+22:02
+get my image here I created The Watermark by the way I get my image and I get the image coefficients for the low
+22:09
+low that we know we don't need to touch low high band high low band and high
+22:15
+high band and I'm going to embed my watermark on these uh three sub
+22:22
+band that adjust the light then following what we just did for the DCT I
+22:28
+I'm going to take the sign of the low high Band frequencies I'm going to take
+22:33
+the absolute values of this lettera and then I'm going to estimate their location following the same
+22:39
+methodologies I um we just use for the DCT version of the space Spectrum so we
+22:44
+sort from the larger to the smaller but even here you are free to experiment and to try different things I'm just using
+22:51
+this version for Simplicity and for explaining purposes then uh once that we get the
+22:58
+location here and the location coordinates we are going to do the same for the high low frequency and for the
+23:04
+high high frequencies and then we are going to embed our watermark in the um
+23:10
+lwh High coefficient in the high low coefficients and in the high high coefficients following the same exact
+23:17
+methodology we use for the um for the space Spectrum using ddct
+23:30
+and after that after we Watermark the High glow low high and high high coefficient we are going to multiply by
+23:37
+the sign and take the inverse DT transform by well um bringing together
+23:43
+the coefficients of the low low low high high low high high and taking the inverse dity transform so what I just
+23:49
+did here is use a different type of domain transformation but the methodology that we use for DCT is
+23:55
+exactly the same the same type of embedding strategy coefficient selection and so and so forth but I just embed my
+24:02
+Watermark into multiple band of the same layer um a frequency
+24:09
+transformation while a discr wavel transformation and then the question is
+24:17
+okay I have the water mark embedded into multiple band of the same layer of
+24:22
+frequencies uh how do I extract it and how do I treat it so the extracting strategies
+24:28
+uh well the the detection strategies take and I'm looking here um for uh for
+24:35
+input plus one which is well five input um the original image as always the
+24:41
+water Market image alpha mark size and V which set the multiplicative or additive
+24:47
+embedding detection so we need to take the DWT of
+24:53
+the variable image and so we get all the coefficients divided for sub B and then
+24:59
+we take the uh DWT of the water Market image and here we get the coefficients
+25:05
+divided for each sub it now we need to get the um coefficients position using
+25:12
+the original image as we were doing for the DCT so we have a lwh high original
+25:18
+we get the sign even if we are not using it but what we are interested in is the absolute value that we can sort and get
+25:26
+the uh embedding location so absolute value of the coefficients of
+25:32
+the original image to get the embedding locations we do this for the LH coefficients we do this for the h h i l
+25:41
+coefficients and for the HH coefficient then we know that we embed
+25:47
+the watermark in each of these sub so we generate not just one Watermark array
+25:52
+but three of them so we have wx1 wx2 and wx3
+25:58
+and uh then we are going to extract using the location of the original image the water mark embedded in the Water
+26:06
+Market coefficients we do this for the LH for the HL and we do this also for
+26:12
+the HH now I decide because I exract the
+26:17
+same water mark three times to take an average of the three so supposedly if I don't know one get decorated but the
+26:23
+other two get not well um I will still be able to extract something that is as
+26:29
+close as possible to the original version of The Watermark um otherwise uh uh if all of three are
+26:39
+in good condition well if I was able to extract exactly the same waterm mark from each of the sub men I will obtain a
+26:45
+perfect representation of the water market and B but here I decide to do an aage between the three water Market I
+26:51
+exract however you may decide to Define your detector so that you take the first
+26:57
+water mark that you exract you compare it with the thr and say okay get lost um this this the
+27:05
+feature where I embedded my water mark on the LH gets attacked and the waterm Mark gets lost whatever let's try with
+27:13
+the HL HL um in this case even it got
+27:18
+lost then let's try with the HH coefficient well with the water mark and back to the HH coefficient and maybe for
+27:25
+this water mark which would be W under SC X um three you are able to detect The
+27:32
+Watermark and you can Implement your detector so that if any of the watermark
+27:38
+you embed in any sub band return a match then you say my water mark didn't get
+27:44
+lost I'm still able to retrieve it and um even if you attack your my image you
+27:50
+were not able to destroy my water mark So Implement your detector in following
+27:56
+this this way of uh of thinking so you can either average The Watermark
+28:01
+extracted from multiple band or you can use them singularly and say whenever I'm
+28:06
+able to detect the water mark ex struct from one of these sub band even if my image was attacked then um my water mark
+28:14
+was preserved and you were not able to destroy it so in the challenge other
+28:20
+group we struggle a lot in removing the watermark from your image or maybe you can use some sort of
+28:26
+majority voting decision so if you are able to detect your water mark in uh
+28:32
+more times than those in which your water mark got lost then in that case you can say that your water mark didn't
+28:41
+um was not destructed by the attack of other
+28:46
+group um but in any case once that I in my case once that I extracted the water
+28:51
+mark from each of the subband I'm just taking the average has it should um uh
+28:56
+it should somehow presents um the average the um let's say
+29:03
+the watermark thata initially embed so it should return more or less always the same the same Val even if it may not be
+29:10
+the case because we know that high frequencies um are better in terms of invisibility but also are um worse in
+29:18
+terms of robustness so if I need to choose one of these three bands to implement a robust detector I will
+29:24
+probably stick with low high and I glow and high high are the less robust
+29:30
+one all right so once that we um get our embedding and detection strategies we
+29:37
+just follow the same pipeline here we embed our Watermark here we attack it
+29:42
+with um an awgn with the standard deviation equal
+29:48
+to 15 and in this case as you can see I use an alpha of 0.5 um then I plot the original water
+29:56
+mark and attack the image I extra ex ract the water mark from the water Market image here and I extract the water mark
+30:03
+from the attacked image here I comput the W psnr as did before so between the original and the
+30:11
+water market and attacked image and then I'm computed the threshold with the
+30:16
+weight that you cannot use during the challenge and decide whether I was able to retrieve the water mark on the non
+30:22
+attacked image and on the attacked image and the results are here so the wble psnr with Alpha equal to 0.5 you using
+30:30
+the W um the DWT so thisr wavel transform um is of 62 so is an excellent
+30:38
+wpsr meaning that by using this strategy you gain a lot of points in terms of invisibility on the embedded image um
+30:47
+water Market image then I apply the same attack with awgn and standard deviation
+30:53
+equal to 15 and the w psnr got to 39 so if there able to destroy the waterm mark
+30:59
+they are not going to gain so many points and instead I'm going to gain a
+31:05
+good amount of points in terms of robustness and then well the threshold is always 0.7 because we are always
+31:11
+estimating in the same way we are able to retrieve the watermark in the non attacked image with a similarity equal
+31:17
+to one so we basically detect the same water mark while in the
+31:24
+um non no sorry in the attacked image the similarity got to
+31:29
+0.67 it means that maybe I could play a little bit more with the value of alpha
+31:34
+to gain that extra point if the threshold was set equal to 0.7 to um
+31:40
+being able to still retrieve my waterm mark and so they the other group should apply
+31:46
+a much stronger attack to remove it and even here we can see that yeah I mean
+31:51
+there there are some difference um on the Water Market images but I think that we notice it mostly because we have the
+31:59
+reference image here um before being water market so it seems like that we
+32:04
+lose a bit of contrast but um but yeah the W psnr is
+32:09
+still high enough for um for getting many points in terms of invisibility and
+32:15
+the methods looks also pretty robust because here we are applying a awgn with
+32:20
+standard dation equal to 15 so is still a pretty strong attack and then you can play with this
+32:27
+code you can play your detecting strategies you can Implement uh uh maybe substituted or follow what I did to
+32:34
+substitute the domain transformation with the F transform or maybe also using the F transform you can do many many
+32:40
+things with this and the last exercise were about the rock curve um let me see
+ROC Curve EX.1
+32:50
+there we go so uh in this case I just Implement some script that you can use
+32:56
+as baseland for your rocker but um basically I'm asking you to implement
+33:02
+the rock carve you are going to use the day uh for well for the challenge to set your thresold um you can get new images
+33:10
+from this link and um what else uh you put here
+33:17
+your embedding strategy your detection strategy and all the function you need for your attack you set up your
+33:23
+attacking strategies to get the similarity score and labels for for your
+33:29
+rockar and here what I'm saying is that well you're you set the parameters of
+33:35
+your M you have that you got score and labels you use this line here to access
+33:42
+the complete list of images inside a specific path which will be the folder that you are going to download um from
+33:51
+this link here and uh you just Loop through every
+33:57
+image you up like here I say 10 attacks for for each
+34:02
+image um you embed well sorry you Loop through every image you embed the waterm
+34:08
+mark into each image of this path so inside this folder you're going to Loop
+34:13
+through 10 randoms attack you're going to attack your image you're going to detect The Watermark from the attacked
+34:19
+image and from the water Marked One and you're going to compute the similarity between the attack head image and the
+34:24
+water Market one and the attack head image and the fake take Mark you're going to append this value similarity to
+34:31
+the score array and a corresponding thresholds sorry a corresponding labels and then you're going to plot Your
+34:37
+Rocker so here you just have the code to do uh your implementation of the rock
+34:44
+carb following the guidelines I just present you in our past
+34:49
+laboratory so and so in laboratory3 um so this is all for today um and we meet
+34:57
+in at our uh next uh class thank you
